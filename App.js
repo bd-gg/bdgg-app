@@ -1,29 +1,20 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import {View, Text} from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {NavigationContainer, StackActions} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
+import ProfileScreen from './src/screens/ProfileScreen';
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function MainView() {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>BDGG Home!</Text>
-      <Ionicons name="ios-person" />
-    </View>
-  );
+function test() {
+  alert('onSubmit');
 }
+
 function SettingView() {
   return (
     <View
@@ -40,7 +31,7 @@ function SettingView() {
 function HomeScreen() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Main" component={MainView} />
+      <Stack.Screen name="Main" component={ProfileScreen} />
     </Stack.Navigator>
   );
 }
