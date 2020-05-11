@@ -1,7 +1,9 @@
 import React from 'react';
 import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MyProfileContainer from '../containers/MyProfileContainer';
+
+import MyProfileContainer from '~/containers/MyProfileContainer';
+
 function test() {
   alert('onSubmit');
 }

@@ -6,14 +6,10 @@ import {NavigationContainer, StackActions} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import ProfileScreen from './src/screens/ProfileScreen';
+import ProfileScreen from '~/screens/ProfileScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
-function test() {
-  alert('onSubmit');
-}
 
 function SettingView() {
   return (

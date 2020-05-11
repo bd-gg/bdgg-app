@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text, Image} from 'react-native';
 
-import GameThumbNail from '../components/GameThumbNail';
+import GameThumbNail from '~/components/GameThumbNail';
 
 export default class MyProfileContainer extends React.Component {
   render() {
