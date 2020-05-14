@@ -1,25 +1,38 @@
 import React from 'react';
-import {StyleSheet, ScrollView, View, Text, Image} from 'react-native';
+import {StyleSheet, View, Image} from 'react-native';
+
+import {getBoardGameInfo} from '~/api/boardgamegeek';
 
 export default class GameThumbNail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      game_id: props.gid,
+      gid: this.props.gid,
+      url: null,
+      size: this.props.size,
+      radius: this.props.size / 2,
     };
   }
+
+  componentDidMount() {
+    getBoardGameInfo(this.state.gid).then(res => {
+      this.setState({url: res.thumbnail});
+    });
+  }
+
   render() {
-    //TODO
-    const uri =
-      'https://cdn.iconscout.com/icon/free/png-256/profile-417-1163876.png';
-    return <Image source={{uri: uri}} style={style.thumbnail} />;
+    return (
+      <Image
+        source={{uri: this.state.url}}
+        PlaceholderContent={<View />}
+        style={{
+          width: this.state.size,
+          height: this.state.size,
+          borderRadius: 1000,
+        }}
+      />
+    );
   }
 }
 
-const style = StyleSheet.create({
-  thumbnail: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-  },
-});
+const style = StyleSheet.create({});

@@ -31,28 +31,16 @@ export default class MyProfileContainer extends React.Component {
           alignItems="center"
           justifyContent="space-around">
           <View flexDirection="row" alignItems="center" flex={1}>
-            <GameThumbNail gid={123} />
-            <Text style={{margin: 10}}>15 G</Text>
+            <GameThumbNail gid={266192} size={60} />
+            <Text style={{margin: 8}}>15{'\n'}plays</Text>
           </View>
           <View flexDirection="row" alignItems="center" flex={1}>
-            <Image
-              source={{
-                uri:
-                  'https://cf.geekdo-images.com/thumb/img/wvfZwwtcqpth4bgHnh4M-EhUCXg=/fit-in/200x150/pic4458123.jpg',
-              }}
-              style={{width: 60, height: 60, borderRadius: 30}}
-            />
-            <Text style={{margin: 10}}>15 G</Text>
+            <GameThumbNail gid={199792} size={60} />
+            <Text style={{margin: 8}}>12{'\n'}plays</Text>
           </View>
           <View flexDirection="row" alignItems="center" flex={1}>
-            <Image
-              source={{
-                uri:
-                  'https://cf.geekdo-images.com/thumb/img/yuVWEJ14iZMS5KLl1MRZSvB9FrM=/fit-in/200x150/pic3918905.png',
-              }}
-              style={{width: 60, height: 60, borderRadius: 30}}
-            />
-            <Text style={{margin: 10}}>15 G</Text>
+            <GameThumbNail gid={174430} size={60} />
+            <Text style={{margin: 8}}>10{'\n'}plays</Text>
           </View>
         </View>
       </View>

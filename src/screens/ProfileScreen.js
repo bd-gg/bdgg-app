@@ -3,6 +3,7 @@ import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import MyProfileContainer from '~/containers/MyProfileContainer';
+import MatchContainer from '~/containers/MatchContainer';
 
 function test() {
   alert('onSubmit');
@@ -62,7 +63,20 @@ export default class ProfileScreen extends React.Component {
             <Text style={{fontSize: 16, color: 'white'}}>게임 성적 보기 ></Text>
           </View>
         </TouchableOpacity>
+        <View marginTop={15}>
+          <Text style={styles.subtitle}>즐겨찾기</Text>
+        </View>
+
+        <MatchContainer victory={false} />
+        <MatchContainer victory={true} />
       </View>
     );
   }
 }
+
+const styles = {
+  subtitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+};

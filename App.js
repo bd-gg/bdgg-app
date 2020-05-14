@@ -48,9 +48,7 @@ function App() {
             let iconName;
 
             if (route.name === 'Home') {
-              iconName = focused
-                ? 'ios-information-circle'
-                : 'ios-information-circle-outline';
+              iconName = 'ios-home';
             } else if (route.name === 'Setting') {
               iconName = focused ? 'ios-list-box' : 'ios-list';
             }
