@@ -8,7 +8,8 @@ export default class GameThumbNail extends React.Component {
     super(props);
     this.state = {
       gid: this.props.gid,
-      url: null,
+      /* question mark image url is used temporarily */
+      url: 'https://imgur.com/a/Qw6mZkb',
       size: this.props.size,
       radius: this.props.size / 2,
     };
