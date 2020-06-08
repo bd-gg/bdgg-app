@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">bdggapp</string>
+    <string name="kakao_app_key">13264e589c06688e7b65927d9ffc9c38</string>
 </resources>
