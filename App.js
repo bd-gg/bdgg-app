@@ -39,14 +39,6 @@ function HomeScreen() {
   );
 }
 
-function InitScreen() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Login" component={LoginScreen} />
-    </Stack.Navigator>
-  );
-}
-
 function SettingScreen() {
   return (
     <Stack.Navigator>
@@ -56,31 +48,36 @@ function SettingScreen() {
 }
 
 function App() {
+  // login check logic
+  let isLogin = true;
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={({route}) => ({
-            tabBarIcon: ({focused, color, size}) => {
-              let iconName;
-              if (route.name === 'Home') {
-                iconName = 'ios-home';
-              } else if (route.name === 'Setting') {
-                iconName = focused ? 'ios-list-box' : 'ios-list';
-              } else if (route.name === 'Login') {
-                iconName = 'ios-arrow-dropright';
-              }
-              return <Ionicons name={iconName} size={size} color={color} />;
-            },
-          })}
-          tabBarOptions={{
-            activeTintColor: 'tomato',
-            inactiveTintColor: 'gray',
-          }}>
-          <Stack.Screen name="Login" component={InitScreen} />
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Setting" component={SettingScreen} />
-        </Tab.Navigator>
+        {isLogin ? (
+          <Tab.Navigator
+            screenOptions={({route}) => ({
+              tabBarIcon: ({focused, color, size}) => {
+                let iconName;
+                if (route.name === 'Home') {
+                  iconName = 'ios-home';
+                } else if (route.name === 'Setting') {
+                  iconName = focused ? 'ios-list-box' : 'ios-list';
+                }
+                return <Ionicons name={iconName} size={size} color={color} />;
+              },
+            })}
+            tabBarOptions={{
+              activeTintColor: 'tomato',
+              inactiveTintColor: 'gray',
+            }}>
+            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Setting" component={SettingScreen} />
+          </Tab.Navigator>
+        ) : (
+          <Stack.Navigator>
+            <Stack.Screen name="Login" component={LoginScreen} />
+          </Stack.Navigator>
+        )}
       </NavigationContainer>
     </Provider>
   );
