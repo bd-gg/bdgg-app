@@ -1,13 +1,6 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Image,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  YellowBox,
-} from 'react-native';
+import {connect} from 'react-redux';
+import {View, Image, Text, StyleSheet, YellowBox} from 'react-native';
 
 import KakaoLogins from '@react-native-seoul/kakao-login';
 import NativeButton from 'apsl-react-native-button';
@@ -28,7 +21,7 @@ const PROFILE_EMPTY = {
   profile_image_url: '',
 };
 
-export default function LoginScreen() {
+function LoginScreen(props) {
   const [loginLoading, setLoginLoading] = useState(false);
   const [logoutLoading, setLogoutLoading] = useState(false);
   const [profileLoading, setProfileLoading] = useState(false);
@@ -46,6 +39,8 @@ export default function LoginScreen() {
           `Login Finished:${JSON.stringify(result)}`,
           setLoginLoading(false),
         );
+        /* dispatch LOGIN_SUCCESS action */
+        props.loginSuccess();
       })
       .catch(err => {
         if (err.code === 'E_CANCELLED_OPERATION') {
@@ -134,6 +129,23 @@ export default function LoginScreen() {
     </View>
   );
 }
+
+function mapStateToProps(state) {
+  return {isLogin: state.isLogin};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    loginSuccess: () => dispatch({type: 'LOGIN_SUCCESS'}),
+    loginFailure: () => dispatch({type: 'LOGIN_FAILURE'}),
+    logout: () => dispatch({type: 'LOGOUT'}),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LoginScreen);
 
 const styles = StyleSheet.create({
   container: {

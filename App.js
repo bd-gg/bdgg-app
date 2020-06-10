@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -9,11 +9,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ProfileScreen from '~/screens/ProfileScreen';
 import LoginScreen from '~/screens/LoginScreen';
 
-import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-import rootReducer from '~/reducers';
-
-const store = createStore(rootReducer);
+import {connect} from 'react-redux';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -47,40 +43,40 @@ function SettingScreen() {
   );
 }
 
-function App() {
-  // login check logic
-  let isLogin = true;
+function App(props) {
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        {isLogin ? (
-          <Tab.Navigator
-            screenOptions={({route}) => ({
-              tabBarIcon: ({focused, color, size}) => {
-                let iconName;
-                if (route.name === 'Home') {
-                  iconName = 'ios-home';
-                } else if (route.name === 'Setting') {
-                  iconName = focused ? 'ios-list-box' : 'ios-list';
-                }
-                return <Ionicons name={iconName} size={size} color={color} />;
-              },
-            })}
-            tabBarOptions={{
-              activeTintColor: 'tomato',
-              inactiveTintColor: 'gray',
-            }}>
-            <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="Setting" component={SettingScreen} />
-          </Tab.Navigator>
-        ) : (
-          <Stack.Navigator>
-            <Stack.Screen name="Login" component={LoginScreen} />
-          </Stack.Navigator>
-        )}
-      </NavigationContainer>
-    </Provider>
+    <NavigationContainer>
+      {props.isLogin ? (
+        <Tab.Navigator
+          screenOptions={({route}) => ({
+            tabBarIcon: ({focused, color, size}) => {
+              let iconName;
+              if (route.name === 'Home') {
+                iconName = 'ios-home';
+              } else if (route.name === 'Setting') {
+                iconName = focused ? 'ios-list-box' : 'ios-list';
+              }
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+          })}
+          tabBarOptions={{
+            activeTintColor: 'tomato',
+            inactiveTintColor: 'gray',
+          }}>
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Setting" component={SettingScreen} />
+        </Tab.Navigator>
+      ) : (
+        <Stack.Navigator>
+          <Stack.Screen name="Login" component={LoginScreen} />
+        </Stack.Navigator>
+      )}
+    </NavigationContainer>
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {isLogin: state.authentication.isLogin};
+}
+
+export default connect(mapStateToProps)(App);

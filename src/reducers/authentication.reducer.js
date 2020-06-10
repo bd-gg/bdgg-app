@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   user: null,
 };
 
+/* reducer */
 const authentication = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'LOGIN_SUCCESS':
