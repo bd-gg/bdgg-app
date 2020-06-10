@@ -2,7 +2,7 @@
 // EX. let user = localStorage.getItem('user');
 const INITIAL_STATE = {
   isLogin: false,
-  user: null
+  user: null,
 };
 
 const authentication = (state = INITIAL_STATE, action) => {
@@ -10,15 +10,15 @@ const authentication = (state = INITIAL_STATE, action) => {
     case 'LOGIN_SUCCESS':
       return {
         isLogin: true,
-        user: action.user
+        user: action.user,
       };
     case 'LOGIN_FAILURE':
       return {};
     case 'LOGOUT':
       return {};
     default:
-      return state
-  };
+      return state;
+  }
 };
 
 export default authentication;

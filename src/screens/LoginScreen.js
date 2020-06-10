@@ -28,10 +28,6 @@ const PROFILE_EMPTY = {
   profile_image_url: '',
 };
 
-function test() {
-  alert('onSubmit');
-}
-
 export default function LoginScreen() {
   const [loginLoading, setLoginLoading] = useState(false);
   const [logoutLoading, setLogoutLoading] = useState(false);
