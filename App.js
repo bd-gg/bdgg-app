@@ -1,18 +1,15 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, {Component} from 'react';
+import {View, Text} from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { NavigationContainer, StackActions } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {NavigationContainer, StackActions} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import ProfileScreen from '~/screens/ProfileScreen';
+import LoginScreen from '~/screens/LoginScreen';
 
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from '~/reducers';
-
-const store = createStore(rootReducer);
+import {connect} from 'react-redux';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -37,6 +34,7 @@ function HomeScreen() {
     </Stack.Navigator>
   );
 }
+
 function SettingScreen() {
   return (
     <Stack.Navigator>
@@ -45,15 +43,14 @@ function SettingScreen() {
   );
 }
 
-function App() {
+function App(props) {
   return (
-    <Provider store={store}>
-      <NavigationContainer>
+    <NavigationContainer>
+      {props.isLogin ? (
         <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
+          screenOptions={({route}) => ({
+            tabBarIcon: ({focused, color, size}) => {
               let iconName;
-
               if (route.name === 'Home') {
                 iconName = 'ios-home';
               } else if (route.name === 'Setting') {
@@ -69,9 +66,17 @@ function App() {
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Setting" component={SettingScreen} />
         </Tab.Navigator>
-      </NavigationContainer>
-    </Provider>
+      ) : (
+        <Stack.Navigator>
+          <Stack.Screen name="Login" component={LoginScreen} />
+        </Stack.Navigator>
+      )}
+    </NavigationContainer>
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {isLogin: state.authentication.isLogin};
+}
+
+export default connect(mapStateToProps)(App);
