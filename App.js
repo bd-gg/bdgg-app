@@ -8,37 +8,17 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import ProfileScreen from '~/screens/ProfileScreen';
 import LoginScreen from '~/screens/LoginScreen';
+import SettingScreen from '~/screens/SettingScreen';
 
 import {connect} from 'react-redux';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function SettingView() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'skyblue',
-      }}
-    />
-  );
-}
-
 function HomeScreen() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Main" component={ProfileScreen} />
-    </Stack.Navigator>
-  );
-}
-
-function SettingScreen() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Main" component={SettingView} />
     </Stack.Navigator>
   );
 }
