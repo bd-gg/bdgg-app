@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import MyProfileContainer from '~/containers/MyProfileContainer';
 import MatchContainer from '~/containers/MatchContainer';
+import FloatingButton from '~/components/FloatingButton';
 
 function test() {
   alert('onSubmit');
@@ -20,6 +21,7 @@ export default class ProfileScreen extends React.Component {
           backgroundColor: 'white', //'#f8f8f8',
           paddingHorizontal: 15,
         }}>
+        <FloatingButton />
         <View alignItems="center">
           <Image
             style={{
@@ -42,7 +44,7 @@ export default class ProfileScreen extends React.Component {
           marginTop={15}>
           <TextInput
             flex={1}
-            style={{color: 'grey', fontSize: 18}}
+            style={{ color: 'grey', fontSize: 18 }}
             placeholder="사용자 검색"
           />
           <TouchableOpacity onPress={test}>
@@ -60,13 +62,12 @@ export default class ProfileScreen extends React.Component {
             alignItems="center"
             backgroundColor="#5383E8"
             borderRadius={13}>
-            <Text style={{fontSize: 16, color: 'white'}}>게임 성적 보기 ></Text>
+            <Text style={{ fontSize: 16, color: 'white' }}>게임 성적 보기 ></Text>
           </View>
         </TouchableOpacity>
         <View marginTop={15}>
           <Text style={styles.subtitle}>즐겨찾기</Text>
         </View>
-
         <MatchContainer victory={false} />
         <MatchContainer victory={true} />
       </View>
