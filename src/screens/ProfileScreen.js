@@ -21,7 +21,7 @@ export default class ProfileScreen extends React.Component {
           backgroundColor: 'white', //'#f8f8f8',
           paddingHorizontal: 15,
         }}>
-        <FloatingButton />
+        <FloatingButton onPress={() => { this.props.navigation.navigate('MatchRegister') }} />
         <View alignItems="center">
           <Image
             style={{
@@ -62,7 +62,7 @@ export default class ProfileScreen extends React.Component {
             alignItems="center"
             backgroundColor="#5383E8"
             borderRadius={13}>
-            <Text style={{ fontSize: 16, color: 'white' }}>게임 성적 보기 ></Text>
+            <Text style={{ fontSize: 16, color: 'white' }}>게임 성적 보기</Text>
           </View>
         </TouchableOpacity>
         <View marginTop={15}>
