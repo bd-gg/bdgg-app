@@ -6,11 +6,7 @@ export default function FloatingButton(props) {
   return (
     <TouchableHighlight
       style={styles.container}
-<<<<<<< HEAD
-      onPress={() => { alert("TODO"); }}>
-=======
       onPress={props.onPress}>
->>>>>>> [feat] Add FloatingButton component
       <View style={styles.position}>
         <Ionicons style={styles.icon} name="ios-add" />
       </View>
