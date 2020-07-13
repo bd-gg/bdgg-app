@@ -68,8 +68,8 @@ export default class ProfileScreen extends React.Component {
         <View marginTop={15}>
           <Text style={styles.subtitle}>즐겨찾기</Text>
         </View>
-        <MatchContainer victory={false} />
-        <MatchContainer victory={true} />
+        <MatchContainer victory={false} match={{ gameTitle: "HaHa", date: "2020-07-13T16:09", party: "SK2-2", location: "서울시 종로구" }} />
+        <MatchContainer victory={true} match={{ gameTitle: "에버델" }} />
       </View>
     );
   }
