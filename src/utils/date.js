@@ -6,7 +6,7 @@ function formatDate(date) {
 
   if (now.getFullYear() == target.getFullYear()
     && now.getMonth() === target.getMonth()
-    && now.getDay() === target.getDay()) {
+    && now.getDate() === target.getDate()) {
     return `${("0" + target.getHours()).slice(-2)}:${("0" + target.getMinutes()).slice(-2)}`; // ex. 16:40
   }
   else {
@@ -17,12 +17,20 @@ function formatDate(date) {
   }
 }
 
-function diffDate(end, start) {
-  if (start === undefined) {
+function describeDate(date) {
+  const now = new Date();
+  const past = new Date(date);
 
-  } else {
+  const dy = now.getFullYear() - past.getFullYear();
+  if (dy > 0) return `${dy}년 전`;
 
-  }
+  const dm = now.getMonth() - past.getMonth();
+  if (dm > 0) return `${dm}달 전`;
+
+  const dd = now.getDate() - past.getDate();
+  if (dd > 0) return `${dd}일 전`;
+
+  return `오늘`;
 }
 
-export default formatDate;
+export { formatDate, describeDate };
