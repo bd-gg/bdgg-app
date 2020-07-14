@@ -79,6 +79,11 @@ target 'bdggapp' do
 
   pod 'KakaoOpenSDK', '~> 1.21.0' # append this line
 
+# add the Firebase pod for Google Analytics
+  pod 'GoogleSignIn'
+# add pods for any other desired Firebase products
+# https://firebase.google.com/docs/ios/setup#available-pods
+
   target 'bdggappTests' do
     inherit! :complete
     # Pods for testing

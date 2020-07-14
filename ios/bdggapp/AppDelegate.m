@@ -13,6 +13,7 @@
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
 
 #import <KakaoOpenSDK/KakaoOpenSDK.h>
+#import <RNGoogleSignin/RNGoogleSignin.h>
 
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
@@ -72,14 +73,12 @@ static void InitializeFlipper(UIApplication *application) {
      if ([KOSession isKakaoAccountLoginCallback:url]) {
          return [KOSession handleOpenURL:url];
      }
-
-     return NO;
+     return [RNGoogleSignin application:application openURL:url options:options];
  }
 
  - (void)applicationDidBecomeActive:(UIApplication *)application
  {
      [KOSession handleDidBecomeActive];
  }
-
 
 @end
