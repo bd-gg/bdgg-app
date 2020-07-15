@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-import TextInputContainer from '~/components/TextInputContainer';
+import TextInputContainer from '~/components/TextInputOption';
+
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default class MatchRegisterScreen extends React.Component {
