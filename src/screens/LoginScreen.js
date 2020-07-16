@@ -4,10 +4,16 @@ import {View, Image, Text, StyleSheet, YellowBox} from 'react-native';
 
 import KakaoLogins from '@react-native-seoul/kakao-login';
 import NativeButton from 'apsl-react-native-button';
+import { GoogleSignin } from '@react-native-community/google-signin';
 
 if (!KakaoLogins) {
   console.error('Module is Not Linked');
 }
+
+if (!GoogleSignin) {
+    console.error('Google login is not linked');
+}
+
 
 const logCallback = (log, callback) => {
   console.log(log);
@@ -22,6 +28,7 @@ const PROFILE_EMPTY = {
 };
 
 function LoginScreen(props) {
+  const [loginGoogleLoading, setGoogleLoading] = useState(false);
   const [loginLoading, setLoginLoading] = useState(false);
   const [logoutLoading, setLogoutLoading] = useState(false);
   const [profileLoading, setProfileLoading] = useState(false);
@@ -52,6 +59,21 @@ function LoginScreen(props) {
           );
         }
       });
+  };
+
+
+  let googleLogin = () => {
+        logCallback('Google login start', setGoogleLoading(true));
+        componentDidMount();
+        GoogleSignin.signIn()
+    .then(result => {
+        setToken(result.accessToken);
+        logCallback(
+            `Login Google Finished:${JSON.stringify(result)}`,
+            setGoogleLoading(false),
+        );
+        props.loginSuccess();
+    })
   };
 
   const kakaoLogout = () => {
@@ -103,6 +125,14 @@ function LoginScreen(props) {
         <Text style={styles.token}>{token}</Text>
         <NativeButton
           isLoading={loginLoading}
+          onPress={googleLogin}
+          activeOpacity={0.5}
+          style={styles.btnKakaoLogin}
+          textStyle={styles.txtKakaoLogin}>
+          GoogleLOGIN
+        </NativeButton>
+        <NativeButton
+          isLoading={loginLoading}
           onPress={kakaoLogin}
           activeOpacity={0.5}
           style={styles.btnKakaoLogin}
@@ -128,6 +158,13 @@ function LoginScreen(props) {
       </View>
     </View>
   );
+}
+
+function componentDidMount() {
+  GoogleSignin.configure({
+      webClientId: '728024659148-pghu7mmtf2jd3m6n546kg2omqs5rpsdh.apps.googleusercontent.com',
+      offlineAccess: false
+  })
 }
 
 function mapStateToProps(state) {
