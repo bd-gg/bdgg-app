@@ -1,7 +1,9 @@
 import React from 'react';
-import {StyleSheet, View, Text, Image} from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 
 import GameThumbNail from '~/components/GameThumbNail';
+
+import { formatDate, describeDate } from '~/utils/date';
 
 export default class MatchContainer extends React.Component {
   constructor(props) {
@@ -17,9 +19,9 @@ export default class MatchContainer extends React.Component {
         <View style={[styles.body]}>
           <GameThumbNail gid={174430} size={70} />
           <View flexDirection="column" marginLeft={8} flex={1}>
-            <Text style={styles.title}>글룸헤이븐</Text>
-            <Text style={styles.date}>1일전 | 05/11 14:05</Text>
-            <Text style={styles.optional}>SK2-2팀 | 서울시 종로구</Text>
+            <Text style={styles.title}>{this.props.match.gameTitle}</Text>
+            <Text style={styles.date}>{describeDate(this.props.match.date)} | {formatDate(this.props.match.date)}</Text>
+            <Text style={styles.optional}>{this.props.match.party} | {this.props.match.location}</Text>
             <View />
           </View>
           {/* <View backgroundColor="green" borderTopLength={100} flex={1} /> */}
@@ -36,14 +38,14 @@ export default class MatchContainer extends React.Component {
 function VictoryHead() {
   return (
     <View style={[styles.head, styles.victory]}>
-      <Text style={{color: 'white', fontSize: 20}}>W</Text>
+      <Text style={{ color: 'white', fontSize: 20 }}>W</Text>
     </View>
   );
 }
 function DefeatHead() {
   return (
     <View style={[styles.head, styles.defeat]}>
-      <Text style={{color: 'white', fontSize: 20}}>L</Text>
+      <Text style={{ color: 'white', fontSize: 20 }}>L</Text>
     </View>
   );
 }
