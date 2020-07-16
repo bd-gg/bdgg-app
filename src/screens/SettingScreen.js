@@ -4,7 +4,7 @@ import { View, ScrollView, Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
-import OptionContainer from '../components/OptionContainer.js';
+import OptionContainer from '~/containers/OptionBoxContainer.js';
 import TypographyOption from '../components/TypographyOption.js';
 
 function SettingLayout() {

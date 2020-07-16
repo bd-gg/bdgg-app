@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 
 import GameThumbNail from '~/components/GameThumbNail';
-
 import { formatDate, describeDate } from '~/utils/date';
 
 export default class MatchContainer extends React.Component {
@@ -32,6 +31,10 @@ export default class MatchContainer extends React.Component {
         </View>
       </View>
     );
+  }
+
+  dateDiff(date) {
+    let now = new Data().getDate();
   }
 }
 
