@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/google-signin": "4.0.3",
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-seoul/kakao-login": "^2.5.0",
     "@react-navigation/bottom-tabs": "5.3.4",
@@ -17,6 +18,7 @@
     "@react-navigation/stack": "5.2.19",
     "apsl-react-native-button": "^3.1.1",
     "moment": "2.27.0",
+    "logkitty": "^0.7.1",
     "react": "16.11.0",
     "react-native": "0.62.2",
     "react-native-gesture-handler": "1.6.1",
