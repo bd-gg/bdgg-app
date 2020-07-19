@@ -21,24 +21,16 @@ export default function ProfileScreen(props) {
           source={{ uri: 'https://cdn3.iconfinder.com/data/icons/brain-games/1042/Board-Games.png' }}
         />
       </View>
-      <View
-        flexDirection="row"
-        backgroundColor="#e1e1e1"
-        borderRadius={13}
-        height={50}
-        paddingHorizontal={10}
-        marginTop={15}>
-        <TextInput
-          flex={1}
-          style={{ color: 'grey', fontSize: 18 }}
-          placeholder="사용자 검색"
-        />
-        <TouchableOpacity onPress={() => { toggleSearch(true); }}>
+      <TouchableOpacity onPress={() => { toggleSearch(true); }}>
+        <View style={styles.searchBox} marginTop={15}>
+          <View style={styles.searchLayout}>
+            <Text style={{ color: 'grey', fontSize: 16, }}>사용자 검색</Text>
+          </View>
           <View height="100%" alignItems="center" justifyContent="center">
             <Ionicons name="ios-search" size={28} color="grey" />
           </View>
-        </TouchableOpacity>
-      </View>
+        </View>
+      </TouchableOpacity>
       <MyProfileContainer />
       <TouchableOpacity>
         <View
@@ -78,4 +70,17 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
+  searchBox: {
+    backgroundColor: "#f0f0f0",
+    borderRadius: 8,
+    flexDirection: "row",
+    height: 46,
+
+
+    paddingHorizontal: 10,
+  },
+  searchLayout: {
+    flex: 1,
+    justifyContent: "center"
+  }
 });
