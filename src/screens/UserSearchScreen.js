@@ -12,6 +12,7 @@ export default function UserSearchScreen(props) {
       close={props.close}
       onModalShow={()=>{textInput.focus();}}
       onModalWillHide={()=>{textInput.blur();}}
+      onRequestClose={props.close}      
       style={{ margin: 0 }}      
     >
       <View style={styles.root}>
