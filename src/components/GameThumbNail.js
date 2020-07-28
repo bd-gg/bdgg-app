@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, View, Image} from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 
-import {getBoardGameInfo} from '~/api/boardgamegeek';
+import { getBoardGameInfo } from '~/api/boardgamegeek';
 
 export default class GameThumbNail extends React.Component {
   constructor(props) {
@@ -16,15 +16,15 @@ export default class GameThumbNail extends React.Component {
   }
 
   componentDidMount() {
-    getBoardGameInfo(this.state.gid).then(res => {
-      this.setState({url: res.thumbnail});
+    getBoardGameInfo(this.state.gid).then((res) => {
+      this.setState({ url: res.thumbnail });
     });
   }
 
   render() {
     return (
       <Image
-        source={{uri: this.state.url}}
+        source={{ uri: this.state.url }}
         PlaceholderContent={<View />}
         style={{
           width: this.state.size,

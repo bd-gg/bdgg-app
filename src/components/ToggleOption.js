@@ -5,7 +5,7 @@ import OptionEntry from '~/components/OptionEntry';
 
 export default function ToggleOption(props) {
   const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(prevState => !prevState);
+  const toggleSwitch = () => setIsEnabled((prevState) => !prevState);
 
   return (
     <OptionEntry icon={props.icon}>
@@ -13,23 +13,25 @@ export default function ToggleOption(props) {
       <View justifyContent="flex-end">
         <Switch
           style={styles.switch}
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
+          trackColor={{ false: '#767577', true: '#81b0ff' }}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
-          value={isEnabled} />
+          value={isEnabled}
+        />
       </View>
-    </OptionEntry>);
+    </OptionEntry>
+  );
 }
 
 const styles = StyleSheet.create({
   title: {
-    alignItems: "center",
+    alignItems: 'center',
     flex: 1,
     fontSize: 18,
     paddingLeft: 2,
   },
   switch: {
-    color: "grey",
+    color: 'grey',
     fontSize: 30,
-  }
+  },
 });

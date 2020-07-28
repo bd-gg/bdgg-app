@@ -7,12 +7,14 @@ export default function MemoOption(props) {
 
   return (
     <OptionEntry icon={props.icon} style={{ height }}>
-      <TextInput style={styles.textInput}
+      <TextInput
+        style={styles.textInput}
         multiline
-        placeholder={props.hint || "텍스트 입력"}
-        onContentSizeChange={ev => {
+        placeholder={props.hint || '텍스트 입력'}
+        onContentSizeChange={(ev) => {
           setHeight(ev.nativeEvent.contentSize.height);
-        }} />
+        }}
+      />
     </OptionEntry>
   );
 }
@@ -21,10 +23,10 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     fontSize: 15,
-    color: "grey",
+    color: 'grey',
   },
   clearIcon: {
-    color: "grey",
+    color: 'grey',
     fontSize: 24,
-  }
+  },
 });

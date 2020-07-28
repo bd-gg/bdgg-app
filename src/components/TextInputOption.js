@@ -10,16 +10,25 @@ export default function TextInputContainer(props) {
     <OptionEntry icon={props.icon}>
       <TextInput
         style={styles.textInput}
-        placeholder={props.hint || "텍스트 입력"}
-        onFocus={() => { toggleFocus(true) }}
-        onBlur={() => { toggleFocus(false) }}
-        ref={ref => textinput = ref} />
+        placeholder={props.hint || '텍스트 입력'}
+        onFocus={() => {
+          toggleFocus(true);
+        }}
+        onBlur={() => {
+          toggleFocus(false);
+        }}
+        ref={(ref) => (textinput = ref)}
+      />
       <View justifyContent="center" paddingRight={10}>
-        {isFocused &&
-          <TouchableOpacity onPress={() => { textinput?.clear(); }}>
+        {isFocused && (
+          <TouchableOpacity
+            onPress={() => {
+              textinput?.clear();
+            }}
+          >
             <Ionicons style={styles.clearIcon} name="ios-close-circle" />
           </TouchableOpacity>
-        }
+        )}
       </View>
     </OptionEntry>
   );
@@ -31,7 +40,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   clearIcon: {
-    color: "grey",
+    color: 'grey',
     fontSize: 24,
-  }
+  },
 });

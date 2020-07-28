@@ -6,15 +6,16 @@ export default function OptionContainer(props) {
     <View>
       <Text style={style.title}>{props.title}</Text>
       {props.children}
-    </View>);
+    </View>
+  );
 }
 
 const style = StyleSheet.create({
   title: {
-    color: "grey",
+    color: 'grey',
     fontSize: 18,
     paddingHorizontal: 20,
     paddingTop: 10,
-    paddingBottom: 8
-  }
+    paddingBottom: 8,
+  },
 });

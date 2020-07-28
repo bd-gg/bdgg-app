@@ -4,19 +4,17 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default function FloatingButton(props) {
   return (
-    <TouchableHighlight
-      style={styles.container}
-      onPress={props.onPress}>
+    <TouchableHighlight style={styles.container} onPress={props.onPress}>
       <View style={styles.position}>
         <Ionicons style={styles.icon} name="ios-add" />
       </View>
-    </TouchableHighlight >
+    </TouchableHighlight>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 30,
     right: 30,
     borderRadius: 50,
@@ -25,9 +23,9 @@ const styles = StyleSheet.create({
   position: {
     width: 75,
     height: 75,
-    backgroundColor: "#2885D0",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#2885D0',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 50,
     elevation: 3,
     shadowColor: 'black',
@@ -39,6 +37,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 40,
-    color: "white"
-  }
+    color: 'white',
+  },
 });
