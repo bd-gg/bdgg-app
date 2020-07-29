@@ -10,13 +10,15 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import OverlayViewContainer from "~/containers/OverlayViewContainer";
 
 export default function UserSearchScreen(props) {
+  let textInput;  
   return (
     <OverlayViewContainer
       isVisible={props.isVisible}
       close={props.close}
-      style={{
-        margin: 0
-      }}
+      onModalShow={()=>{textInput.focus();}}
+      onModalWillHide={()=>{textInput.blur();}}
+      onRequestClose={props.close}      
+      style={{ margin: 0 }}      
     >
       <View style={styles.root}>
         <View style={styles.searchBox}>
@@ -25,7 +27,10 @@ export default function UserSearchScreen(props) {
               <Ionicons name="ios-arrow-back" size={28} color="grey" />
             </View>
           </TouchableOpacity>
-          <TextInput style={styles.textInput} placeholder="사용자 검색" />
+          <TextInput 
+            style={styles.textInput} placeholder="사용자 검색" 
+            ref={ input => { textInput = input; }}
+          />
           <TouchableOpacity
             onPress={() => {
               alert("submit");
@@ -82,8 +87,9 @@ export default function UserSearchScreen(props) {
 const styles = StyleSheet.create({
   root: {
     backgroundColor: "white",
-    flex: 1,
-    borderRadius: 15
+    flex: 1,    
+    borderTopLeftRadius: 15,
+    borderTopRightRadius:15,
   },
   searchBox: {
     backgroundColor: "#f0f0f0",
