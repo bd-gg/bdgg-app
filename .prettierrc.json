@@ -8,5 +8,6 @@
   "singleQuote": true,
 
   "bracketSpacing": true,
+
   "arrowParens": "always"
 }
