@@ -19,8 +19,13 @@ export default class MatchContainer extends React.Component {
           <GameThumbNail gid={174430} size={70} />
           <View flexDirection="column" marginLeft={8} flex={1}>
             <Text style={styles.title}>{this.props.match.gameTitle}</Text>
-            <Text style={styles.date}>{describeDate(this.props.match.date)} | {formatDate(this.props.match.date)}</Text>
-            <Text style={styles.optional}>{this.props.match.party} | {this.props.match.location}</Text>
+            <Text style={styles.date}>
+              {describeDate(this.props.match.date)} |{' '}
+              {formatDate(this.props.match.date)}
+            </Text>
+            <Text style={styles.optional}>
+              {this.props.match.party} | {this.props.match.location}
+            </Text>
             <View />
           </View>
           {/* <View backgroundColor="green" borderTopLength={100} flex={1} /> */}
@@ -34,7 +39,7 @@ export default class MatchContainer extends React.Component {
   }
 
   dateDiff(date) {
-    let now = new Data().getDate();
+    let now = new Date().getDate();
   }
 }
 

@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {connect} from 'react-redux';
-import {View, Image, Text, StyleSheet, YellowBox} from 'react-native';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { View, Image, Text, StyleSheet, YellowBox } from 'react-native';
 
 import KakaoLogins from '@react-native-seoul/kakao-login';
 import NativeButton from 'apsl-react-native-button';
@@ -11,9 +11,8 @@ if (!KakaoLogins) {
 }
 
 if (!GoogleSignin) {
-    console.error('Google login is not linked');
+  console.error('Google login is not linked');
 }
-
 
 const logCallback = (log, callback) => {
   console.log(log);
@@ -40,55 +39,53 @@ function LoginScreen(props) {
     logCallback('Login Start', setLoginLoading(true));
 
     KakaoLogins.login()
-      .then(result => {
+      .then((result) => {
         setToken(result.accessToken);
         logCallback(
           `Login Finished:${JSON.stringify(result)}`,
-          setLoginLoading(false),
+          setLoginLoading(false)
         );
         /* dispatch LOGIN_SUCCESS action */
         props.loginSuccess();
       })
-      .catch(err => {
+      .catch((err) => {
         if (err.code === 'E_CANCELLED_OPERATION') {
           logCallback(`Login Cancelled:${err.message}`, setLoginLoading(false));
         } else {
           logCallback(
             `Login Failed:${err.code} ${err.message}`,
-            setLoginLoading(false),
+            setLoginLoading(false)
           );
         }
       });
   };
 
-
   let googleLogin = () => {
-        logCallback('Google login start', setGoogleLoading(true));
-        componentDidMount();
-        GoogleSignin.signIn()
-    .then(result => {
-        setToken(result.accessToken);
-        logCallback(
-            `Login Google Finished:${JSON.stringify(result)}`,
-            setGoogleLoading(false),
-        );
-        props.loginSuccess();
-    })
+    logCallback('Google login start', setGoogleLoading(true));
+    componentDidMount();
+    GoogleSignin.signIn().then((result) => {
+      setToken(result.accessToken);
+      logCallback(
+        `Login Google Finished:${JSON.stringify(result)}`,
+        setGoogleLoading(false)
+      );
+      props.loginSuccess();
+    });
   };
 
   const kakaoLogout = () => {
     logCallback('Logout Start', setLogoutLoading(true));
 
     KakaoLogins.logout()
-      .then(result => {
+      .then((result) => {
         setToken(TOKEN_EMPTY);
         setProfile(PROFILE_EMPTY);
         logCallback(`Logout Finished:${result}`, setLogoutLoading(false));
       })
-      .catch(err => {
+      .catch((err) => {
         logCallback(
           `Logout Failed:${err.code} ${err.message}`,
-          setLogoutLoading(false),
+          setLogoutLoading(false)
         );
       });
   };
@@ -97,27 +94,27 @@ function LoginScreen(props) {
     logCallback('Get Profile Start', setProfileLoading(true));
 
     KakaoLogins.getProfile()
-      .then(result => {
+      .then((result) => {
         setProfile(result);
         logCallback(
           `Get Profile Finished:${JSON.stringify(result)}`,
-          setProfileLoading(false),
+          setProfileLoading(false)
         );
       })
-      .catch(err => {
+      .catch((err) => {
         logCallback(
           `Get Profile Failed:${err.code} ${err.message}`,
-          setProfileLoading(false),
+          setProfileLoading(false)
         );
       });
   };
 
-  const {id, email, profile_image_url: photo} = profile;
+  const { id, email, profile_image_url: photo } = profile;
 
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
-        <Image style={styles.profilePhoto} source={{uri: photo}} />
+        <Image style={styles.profilePhoto} source={{ uri: photo }} />
         <Text>{`id : ${id}`}</Text>
         <Text>{`email : ${email}`}</Text>
       </View>
@@ -128,7 +125,8 @@ function LoginScreen(props) {
           onPress={googleLogin}
           activeOpacity={0.5}
           style={styles.btnKakaoLogin}
-          textStyle={styles.txtKakaoLogin}>
+          textStyle={styles.txtKakaoLogin}
+        >
           GoogleLOGIN
         </NativeButton>
         <NativeButton
@@ -136,7 +134,8 @@ function LoginScreen(props) {
           onPress={kakaoLogin}
           activeOpacity={0.5}
           style={styles.btnKakaoLogin}
-          textStyle={styles.txtKakaoLogin}>
+          textStyle={styles.txtKakaoLogin}
+        >
           LOGIN
         </NativeButton>
         <NativeButton
@@ -144,7 +143,8 @@ function LoginScreen(props) {
           onPress={kakaoLogout}
           activeOpacity={0.5}
           style={styles.btnKakaoLogin}
-          textStyle={styles.txtKakaoLogin}>
+          textStyle={styles.txtKakaoLogin}
+        >
           Logout
         </NativeButton>
         <NativeButton
@@ -152,7 +152,8 @@ function LoginScreen(props) {
           onPress={getProfile}
           activeOpacity={0.5}
           style={styles.btnKakaoLogin}
-          textStyle={styles.txtKakaoLogin}>
+          textStyle={styles.txtKakaoLogin}
+        >
           getProfile
         </NativeButton>
       </View>
@@ -162,27 +163,25 @@ function LoginScreen(props) {
 
 function componentDidMount() {
   GoogleSignin.configure({
-      webClientId: '728024659148-pghu7mmtf2jd3m6n546kg2omqs5rpsdh.apps.googleusercontent.com',
-      offlineAccess: false
-  })
+    webClientId:
+      '728024659148-pghu7mmtf2jd3m6n546kg2omqs5rpsdh.apps.googleusercontent.com',
+    offlineAccess: false,
+  });
 }
 
 function mapStateToProps(state) {
-  return {isLogin: state.isLogin};
+  return { isLogin: state.isLogin };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    loginSuccess: () => dispatch({type: 'LOGIN_SUCCESS'}),
-    loginFailure: () => dispatch({type: 'LOGIN_FAILURE'}),
-    logout: () => dispatch({type: 'LOGOUT'}),
+    loginSuccess: () => dispatch({ type: 'LOGIN_SUCCESS' }),
+    loginFailure: () => dispatch({ type: 'LOGIN_FAILURE' }),
+    logout: () => dispatch({ type: 'LOGOUT' }),
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(LoginScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
 
 const styles = StyleSheet.create({
   container: {

@@ -44,15 +44,16 @@ function App(props) {
           tabBarOptions={{
             activeTintColor: 'tomato',
             inactiveTintColor: 'gray',
-          }}>
+          }}
+        >
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Setting" component={SettingScreen} />
         </Tab.Navigator>
       ) : (
-          <Stack.Navigator>
-            <Stack.Screen name="Login" component={LoginScreen} />
-          </Stack.Navigator>
-        )}
+        <Stack.Navigator>
+          <Stack.Screen name="Login" component={LoginScreen} />
+        </Stack.Navigator>
+      )}
     </NavigationContainer>
   );
 }
