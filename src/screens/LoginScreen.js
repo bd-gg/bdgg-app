@@ -6,6 +6,9 @@ import KakaoLogins from '@react-native-seoul/kakao-login';
 import NativeButton from 'apsl-react-native-button';
 import { GoogleSignin } from '@react-native-community/google-signin';
 
+import fetch from 'node-fetch';
+import { AsyncStorage } from 'react-native';
+
 if (!KakaoLogins) {
   console.error('Module is Not Linked');
 }
@@ -35,6 +38,14 @@ function LoginScreen(props) {
   const [token, setToken] = useState(TOKEN_EMPTY);
   const [profile, setProfile] = useState(PROFILE_EMPTY);
 
+  /* check whether access token exists */
+  AsyncStorage.getItem('bdgg-accessToken').then((res) => {
+    if (res) {
+      /* dispatch LOGIN_SUCCESS action */
+      props.loginSuccess();
+    }
+  });
+
   let kakaoLogin = () => {
     logCallback('Login Start', setLoginLoading(true));
 
@@ -45,6 +56,32 @@ function LoginScreen(props) {
           `Login Finished:${JSON.stringify(result)}`,
           setLoginLoading(false)
         );
+        fetch(
+          'http://ec2-13-125-12-178.ap-northeast-2.compute.amazonaws.com:8080/signup',
+          {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+              nativeKey: 'pushhostmessage',
+              accessToken: result.accessToken,
+              refreshToken: result.refreshToken,
+              provider: 'kakao',
+            }),
+          }
+        )
+          .then((res) => {
+            console.log('!!!!!!!!!!!!!!!!!!');
+            return res.json();
+          })
+          .then((res) => {
+            console.log(res);
+            AsyncStorage.setItem('bdgg-accessToken', res.accessToken);
+            AsyncStorage.setItem('bdgg-refreshToken', res.refreshToken);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+
         /* dispatch LOGIN_SUCCESS action */
         props.loginSuccess();
       })
