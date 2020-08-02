@@ -46,8 +46,8 @@ function App(props) {
             inactiveTintColor: 'gray',
           }}
         >
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Setting" component={SettingScreen} />
+          <Tab.Screen name="Home" component={HomeScreen} />
+          <Tab.Screen name="Setting" component={SettingScreen} />
         </Tab.Navigator>
       ) : (
         <Stack.Navigator>
