@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { View, Text } from 'react-native';
+import { AsyncStorage } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
@@ -8,6 +9,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import ProfileScreen from '~/screens/ProfileScreen';
 import LoginScreen from '~/screens/LoginScreen';
+import AppLoadingScreen from '~/screens/AppLoadingScreen';
 import SettingScreen from '~/screens/SettingScreen';
 import MatchRegisterScreen from '~/screens/MatchRegisterScreen';
 
@@ -25,11 +27,27 @@ function HomeScreen() {
   );
 }
 
+function MyTabIndicator() {
+  return <View style={{ height: 10, width: 10, backgroundColor: 'white' }} />;
+}
+
 function App(props) {
-  return (
-    <NavigationContainer>
-      {props.isLogin ? (
+  useEffect(() => {
+    console.log(props.isLoading);
+  });
+
+  const chooseScreen = (props) => {
+    if (props.isLoading) {
+      return (
+        <Stack.Navigator>
+          <Stack.Screen name="Loading" component={AppLoadingScreen} />
+        </Stack.Navigator>
+      );
+    }
+    if (props.isLogin) {
+      return (
         <Tab.Navigator
+          tabBarOptions={{ renderIndicator: MyTabIndicator }}
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
@@ -49,17 +67,24 @@ function App(props) {
           <Tab.Screen name="Home" component={HomeScreen} />
           <Tab.Screen name="Setting" component={SettingScreen} />
         </Tab.Navigator>
-      ) : (
+      );
+    } else {
+      return (
         <Stack.Navigator>
           <Stack.Screen name="Login" component={LoginScreen} />
         </Stack.Navigator>
-      )}
-    </NavigationContainer>
-  );
+      );
+    }
+  };
+
+  return <NavigationContainer>{chooseScreen(props)}</NavigationContainer>;
 }
 
 function mapStateToProps(state) {
-  return { isLogin: state.authentication.isLogin };
+  return {
+    isLogin: state.authentication.isLogin,
+    isLoading: state.authentication.isLoading,
+  };
 }
 
 export default connect(mapStateToProps)(App);
