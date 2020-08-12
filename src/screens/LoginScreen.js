@@ -9,6 +9,9 @@ import { GoogleSignin } from '@react-native-community/google-signin';
 import fetch from 'node-fetch';
 import { AsyncStorage } from 'react-native';
 
+import { Fonts } from '../Fonts';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
 if (!KakaoLogins) {
   console.error('Module is Not Linked');
 }
@@ -142,49 +145,44 @@ function LoginScreen(props) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.profile}>
-        <Image style={styles.profilePhoto} source={{ uri: photo }} />
-        <Text>{`id : ${id}`}</Text>
-        <Text>{`email : ${email}`}</Text>
+      <View style={styles.titleContainer}>
+        <Image style={styles.Logo} source={require('../assets/img/bdgg.png')} />
+        <View>
+          <Text style={styles.title}>BoardGG</Text>
+        </View>
       </View>
       <View style={styles.content}>
-        <Text style={styles.token}>{token}</Text>
-        <NativeButton
-          isLoading={loginLoading}
-          onPress={googleLogin}
-          activeOpacity={0.5}
-          style={styles.btnKakaoLogin}
-          textStyle={styles.txtKakaoLogin}
-        >
-          GoogleLOGIN
-        </NativeButton>
-        <NativeButton
-          isLoading={loginLoading}
+        <Text style={styles.firstText}>간편하게 로그인하고</Text>
+        <Text style={styles.secondText}>다양한 서비스를 이용하세요.</Text>
+        <TouchableOpacity
+          style={styles.KakaoLoginContainer}
           onPress={kakaoLogin}
-          activeOpacity={0.5}
-          style={styles.btnKakaoLogin}
-          textStyle={styles.txtKakaoLogin}
         >
-          LOGIN
-        </NativeButton>
-        <NativeButton
-          isLoading={logoutLoading}
-          onPress={kakaoLogout}
-          activeOpacity={0.5}
-          style={styles.btnKakaoLogin}
-          textStyle={styles.txtKakaoLogin}
-        >
-          Logout
-        </NativeButton>
-        <NativeButton
-          isLoading={profileLoading}
-          onPress={getProfile}
-          activeOpacity={0.5}
-          style={styles.btnKakaoLogin}
-          textStyle={styles.txtKakaoLogin}
-        >
-          getProfile
-        </NativeButton>
+          <Image
+            style={styles.KakaoIcon}
+            source={require('../assets/img/kakao.png')}
+          />
+          <Text style={styles.LoginText}>카카오톡으로 시작하기</Text>
+        </TouchableOpacity>
+        <View style={styles.EtcLoginContainer}>
+          <View>
+            <Text style={styles.EtcLoginText}>다른 방법으로 시작하기</Text>
+          </View>
+          <View style={styles.EtcIconContainer}>
+            <TouchableOpacity onPress={googleLogin}>
+              <Image
+                style={styles.EtcIcon}
+                source={require('../assets/img/google-icon.jpg')}
+              ></Image>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={''}>
+              <Image
+                style={styles.EtcIcon}
+                source={require('../assets/img/facebook-icon.png')}
+              ></Image>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -216,50 +214,82 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    paddingTop: 24,
+    paddingTop: 100,
     backgroundColor: 'white',
-  },
-  profile: {
-    flex: 4,
     alignItems: 'center',
-    justifyContent: 'flex-end',
   },
-  profilePhoto: {
+  titleContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    alignItems: 'center',
+  },
+  title: {
+    fontFamily: Fonts.BM,
+    fontSize: 24,
+    marginLeft: 5,
+  },
+  Logo: {
     width: 120,
     height: 120,
-    borderWidth: 1,
-    borderColor: 'black',
+  },
+  KakaoIcon: {
+    width: 30,
+    height: 30,
+    marginRight: 10,
   },
   content: {
     flex: 6,
     justifyContent: 'flex-start',
     alignItems: 'center',
+    marginTop: 35,
+    backgroundColor: 'white',
   },
-  title: {
-    fontSize: 24,
+  firstText: {
+    fontSize: 27,
+    fontFamily: Fonts.BM,
+  },
+  secondText: {
+    fontSize: 29,
+    fontFamily: Fonts.BM,
     fontWeight: 'bold',
+    marginTop: 10,
   },
-  token: {
-    width: 200,
-    fontSize: 12,
-    padding: 5,
-    borderRadius: 8,
-    marginVertical: 20,
-    backgroundColor: 'grey',
-    color: 'white',
-    textAlign: 'center',
-  },
-  btnKakaoLogin: {
-    height: 48,
-    width: 240,
-    alignSelf: 'center',
+  KakaoLoginContainer: {
+    paddingVertical: 10,
+    paddingHorizontal: 70,
+    marginTop: 35,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 30,
     backgroundColor: '#F8E71C',
-    borderRadius: 0,
-    borderWidth: 0,
   },
-  txtKakaoLogin: {
+  LoginText: {
+    fontSize: 18,
+  },
+  EtcLoginContainer: {
+    flex: 1,
+    paddingVertical: 10,
+    paddingHorizontal: 70,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    borderRadius: 30,
+    marginBottom: 40,
+  },
+  EtcLoginText: {
     fontSize: 16,
-    color: '#3d3d3d',
+    color: '#6d6d6d',
+  },
+  EtcIconContainer: {
+    width: 100,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  EtcIcon: {
+    marginTop: 15,
+    width: 30,
+    height: 30,
   },
 });
 
