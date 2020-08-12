@@ -22,6 +22,8 @@
 		E9A07BCEF3B0F0B49BF40C24 /* libPods-bdggapp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED608EDD6882030CEDB1117 /* libPods-bdggapp-tvOSTests.a */; };
 		F09739C924B367E90012EEC0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F09739C824B367E90012EEC0 /* GoogleService-Info.plist */; };
 		F0E94D9824BCA379008B0C10 /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0E94D9724BCA379008B0C10 /* libRNGoogleSignin.a */; };
+		A855A30CC8FF4DF5AF97B84A /* BMEULJIROTTF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC82E5A26A3F425690EE0ED0 /* BMEULJIROTTF.ttf */; };
+		7F9FF8DD4C5E4AE6848BDF5F /* BMEULJIRO.otf in Resources */ = {isa = PBXBuildFile; fileRef = B1CC8401F9F54DB694887FD8 /* BMEULJIRO.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -112,6 +114,8 @@
 		F09739C824B367E90012EEC0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "bdggapp/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F0E94D9724BCA379008B0C10 /* libRNGoogleSignin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNGoogleSignin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8970206503940CA9EE1047B /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		CC82E5A26A3F425690EE0ED0 /* BMEULJIROTTF.ttf */ = {isa = PBXFileReference; name = "BMEULJIROTTF.ttf"; path = "../src/assets/fonts/BMEULJIROTTF.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B1CC8401F9F54DB694887FD8 /* BMEULJIRO.otf */ = {isa = PBXFileReference; name = "BMEULJIRO.otf"; path = "../src/assets/fonts/BMEULJIRO.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +206,8 @@
 				3C2457D68B5D46389B44EDE5 /* Octicons.ttf */,
 				5B0941AC966042F4AC9D16D2 /* SimpleLineIcons.ttf */,
 				8A82550C47D14999853A3813 /* Zocial.ttf */,
+				CC82E5A26A3F425690EE0ED0 /* BMEULJIROTTF.ttf */,
+				B1CC8401F9F54DB694887FD8 /* BMEULJIRO.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -424,6 +430,8 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				F09739C924B367E90012EEC0 /* GoogleService-Info.plist in Resources */,
+				A855A30CC8FF4DF5AF97B84A /* BMEULJIROTTF.ttf in Resources */,
+				7F9FF8DD4C5E4AE6848BDF5F /* BMEULJIRO.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
