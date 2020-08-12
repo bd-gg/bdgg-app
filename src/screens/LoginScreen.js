@@ -252,7 +252,6 @@ const styles = StyleSheet.create({
   secondText: {
     fontSize: 29,
     fontFamily: Fonts.BM,
-    fontWeight: 'bold',
     marginTop: 10,
   },
   KakaoLoginContainer: {
