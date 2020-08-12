@@ -38,14 +38,6 @@ function LoginScreen(props) {
   const [token, setToken] = useState(TOKEN_EMPTY);
   const [profile, setProfile] = useState(PROFILE_EMPTY);
 
-  /* check whether access token exists */
-  AsyncStorage.getItem('bdgg-accessToken').then((res) => {
-    if (res) {
-      /* dispatch LOGIN_SUCCESS action */
-      props.loginSuccess();
-    }
-  });
-
   let kakaoLogin = () => {
     logCallback('Login Start', setLoginLoading(true));
 
