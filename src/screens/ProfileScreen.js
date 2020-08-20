@@ -11,7 +11,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import MyProfileContainer from '~/containers/MyProfileContainer';
 import MatchContainer from '~/containers/MatchContainer';
-import FloatingButton from '~/components/FloatingButton';
+import { FloatingButton } from '~/components/FloatingButton';
 import UserSearchScreen from '~/screens/UserSearchScreen';
 
 export default function ProfileScreen(props) {

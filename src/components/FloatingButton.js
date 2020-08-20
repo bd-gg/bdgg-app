@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, TouchableHighlight } from 'react-native';
+import { StyleSheet, View, TouchableHighlight, Text } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-export default function FloatingButton(props) {
+export function FloatingButton(props) {
   return (
     <TouchableHighlight style={styles.container} onPress={props.onPress}>
       <View style={styles.position}>
@@ -12,7 +12,23 @@ export default function FloatingButton(props) {
   );
 }
 
+export function AddButton(props) {
+    return (
+     <TouchableHighlight style={styles.button} onPress={props.onPress}>
+      <View style={styles.position}>
+        <Text>ADD</Text>
+        </View>
+    </TouchableHighlight>
+    );
+}
+
+
 const styles = StyleSheet.create({
+  button: {
+    position: 'relative',
+    fontSize: 16, 
+    width:75,
+  },
   container: {
     position: 'absolute',
     bottom: 30,
