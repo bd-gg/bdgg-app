@@ -12,12 +12,13 @@ export function FloatingButton(props) {
   );
 }
 
+
 export function AddButton(props) {
     return (
      <TouchableHighlight style={styles.button} onPress={props.onPress}>
       <View style={styles.position}>
         <Text>ADD</Text>
-        </View>
+      </View>
     </TouchableHighlight>
     );
 }

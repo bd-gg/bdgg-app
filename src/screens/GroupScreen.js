@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import GroupListScreen from './GroupListScreen';
+import { GroupListScreen } from './GroupListScreen';
 
 import { FloatingButton, AddButton } from '~/components/FloatingButton';
 import styled from 'styled-components';
@@ -14,7 +14,7 @@ const Container = styled.SafeAreaView`
 
 const GroupLayout = ({ }: Props) => {
     return (
-            <GroupListScreen />
+            <GroupListScreen></GroupListScreen>
     );
 }
 
@@ -22,7 +22,7 @@ function AddGroupInputLayout(props) {
     return (
     <Container>
         <TextInputContainer icon="ios-trophy" hint="test"></TextInputContainer>
-        <AddButton onPress={props.hide} />
+        <AddButton onPress={props.hide}/>
     </Container>
     );
 }
