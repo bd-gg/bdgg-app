@@ -34,7 +34,7 @@ export default function TextInputContainer(props) {
   );
 }
 
-function TextInputContainer2(props) {
+export function TextInputContainer2(props) {
   const [isFocused, toggleFocus] = useState(false);
   let textinput = null;
   return (
@@ -48,7 +48,7 @@ function TextInputContainer2(props) {
         onBlur={() => {
           toggleFocus(false);
         }}
-        ref={(ref) => (textinput = ref)}
+        onChangeText={props.setName}
       />
       <View justifyContent="center" paddingRight={10}>
         {isFocused && (
@@ -63,7 +63,6 @@ function TextInputContainer2(props) {
       </View>
     </OptionEntry>
   );
- 
 }
 
 const styles = StyleSheet.create({
