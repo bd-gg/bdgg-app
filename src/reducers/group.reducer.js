@@ -3,19 +3,19 @@ const InitialState = {
 }
 
 /* reducer */
-const groups = (state=InitialState, action) => {
+const groups = (state=[], action) => {
   switch (action.type) {
     case 'ADD_GROUP':
-      state.groupList = [...state.groupList, {image:action.image, name:action.name, place:action.place, members: action.members}];
+      state = [...state, {image:action.image, name:action.name, place:action.place, members: action.members}];
       console.log("ADD GROUP!!!!");
       return state;
     case 'REMOVE_GROUP':
       return [ 
-            state.groupList.splice(action.index, 1)
+            state.splice(action.index, 1)
       ]
     case 'GET_GROUP':
       console.log("GET GROUP!!!!");
-        return state.groupList
+        return state
     default:
       return state;
   }

@@ -64,7 +64,7 @@ export function GroupListScreen(props) {
 
 function mapStateToProps(state) {
   return { 
-        groups: state.groupList
+        groupList: state
   };
 }
 

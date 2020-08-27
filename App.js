@@ -11,7 +11,7 @@ import ProfileScreen from '~/screens/ProfileScreen';
 import LoginScreen from '~/screens/LoginScreen';
 import AppLoadingScreen from '~/screens/AppLoadingScreen';
 import SettingScreen from '~/screens/SettingScreen';
-import { GroupScreen } from '~/screens/GroupScreen';
+import  GroupScreen  from '~/screens/GroupScreen';
 import MatchRegisterScreen from '~/screens/MatchRegisterScreen';
 
 import { connect } from 'react-redux';
