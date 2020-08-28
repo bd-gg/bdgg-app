@@ -12,23 +12,21 @@ export function FloatingButton(props) {
   );
 }
 
-
 export function AddButton(props) {
-    return (
-     <TouchableHighlight style={styles.button} onPress={props.onPress}>
+  return (
+    <TouchableHighlight style={styles.button} onPress={props.onPress}>
       <View style={styles.position}>
         <Text>ADD</Text>
       </View>
     </TouchableHighlight>
-    );
+  );
 }
-
 
 const styles = StyleSheet.create({
   button: {
     position: 'relative',
-    fontSize: 16, 
-    width:75,
+    fontSize: 16,
+    width: 75,
   },
   container: {
     position: 'absolute',
