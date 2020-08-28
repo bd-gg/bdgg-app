@@ -13,9 +13,9 @@ const renderItem = ({ item }) => (
     <MatchContainer
         victory={false}
         match={{
-            gameTitle: item.name,
+            gameTitle: item.image,
             date: item.name,
-            party: item.name,
+            party: item.place,
             location: item.name,
         }}
     />
@@ -42,15 +42,14 @@ const DATA1 = [
 
 const GroupList = (props) => {
     // [TODO]
-    //DATA = props.getGroup()
-    //console.log(`DATA`,DATA.length);
-    
+    DATA = props.getGroup();
+    console.log(`DATA: `,DATA);
     return (
         <Container>
             <FlatList
-                data={DATA1}
+                data={DATA}
                 renderItem={renderItem}
-                keyExtractor={item => item.gameTitle}
+                keyExtractor={item => item.name}
             />
         </Container>
     );
@@ -59,13 +58,13 @@ const GroupList = (props) => {
 
 function mapStateToProps(state) {
   return { 
-        groupList: state
+        state: state
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getGroup: () => dispatch({type: 'GET_GROUP'})
+    getGroup: () => dispatch({type: 'GET_GROUP'}) 
   };
 }
 

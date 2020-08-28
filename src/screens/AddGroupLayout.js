@@ -36,7 +36,6 @@ function AddGroupLayout() {
 
 function mapStateToProps(state) {
   return { 
-        groupList: state
   };
 };
 
