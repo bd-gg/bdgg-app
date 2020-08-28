@@ -11,6 +11,7 @@ import ProfileScreen from '~/screens/ProfileScreen';
 import LoginScreen from '~/screens/LoginScreen';
 import AppLoadingScreen from '~/screens/AppLoadingScreen';
 import SettingScreen from '~/screens/SettingScreen';
+import GroupScreen from '~/screens/GroupScreen';
 import MatchRegisterScreen from '~/screens/MatchRegisterScreen';
 
 import { connect } from 'react-redux';
@@ -55,6 +56,8 @@ function App(props) {
                 iconName = 'ios-home';
               } else if (route.name === 'Setting') {
                 iconName = focused ? 'ios-list-box' : 'ios-list';
+              } else if (route.name === 'Group') {
+                iconName = 'ios-people';
               }
               return <Ionicons name={iconName} size={size} color={color} />;
             },
@@ -65,6 +68,7 @@ function App(props) {
           }}
         >
           <Tab.Screen name="Home" component={HomeScreen} />
+          <Tab.Screen name="Group" component={GroupScreen} />
           <Tab.Screen name="Setting" component={SettingScreen} />
         </Tab.Navigator>
       );
