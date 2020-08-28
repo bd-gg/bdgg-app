@@ -1,5 +1,5 @@
 import React  from 'react';
-import { GroupListScreen } from './GroupListScreen';
+import GroupList from './GroupList';
 import AddGroupLayout from './AddGroupLayout';
 import styled from 'styled-components';
 
@@ -10,7 +10,7 @@ const Container = styled.SafeAreaView`
 export default function GroupScreen() {
     return (
       <Container>
-        <GroupListScreen />
+        <GroupList />
         <AddGroupLayout />
       </Container>
        );

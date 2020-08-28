@@ -1,6 +1,3 @@
-const InitialState = {
-    groupList : []
-}
 
 /* reducer */
 const groups = (state=[], action) => {
@@ -17,7 +14,12 @@ const groups = (state=[], action) => {
       console.log("GET GROUP!!!!");
         return state
     default:
-      return state;
+      if (state.length != 0) {
+          console.log("WOW!!",state.length);
+          return state
+      }
+      state = [{image:"test", name:"test1", place:"test2", members:[]}];
+      return state; 
   }
 };
 

@@ -40,27 +40,22 @@ const DATA1 = [
     },
 ]
 
-function GroupList(props) {
-    //const DATA = props.getGroup();
-
+const GroupList = (props) => {
+    // [TODO]
+    //DATA = props.getGroup()
+    //console.log(`DATA`,DATA.length);
+    
     return (
         <Container>
             <FlatList
                 data={DATA1}
                 renderItem={renderItem}
-                keyExtractor={item => item.name}
+                keyExtractor={item => item.gameTitle}
             />
         </Container>
     );
 }
 
-export function GroupListScreen(props) {
-    return (
-        <Container>
-            <GroupList />
-        </Container>
-    );
-}
 
 function mapStateToProps(state) {
   return { 
