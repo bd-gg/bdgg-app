@@ -1,5 +1,5 @@
 /* reducer */
-const groups = (state = [], action) => {
+const group = (state = [], action) => {
   switch (action.type) {
     case 'ADD_GROUP':
       state.push({
@@ -14,17 +14,11 @@ const groups = (state = [], action) => {
       return [state.splice(action.index, 1)];
     case 'GET_GROUP':
       console.log('GET GROUP!!!!');
-      state.push({
-        image: 'test',
-        name: 'test1',
-        place: 'test2',
-        members: ['a'],
-      });
-      console.log(`State length:`, state, state.length);
-      return state;
+      console.log('action: ', action);
+      return { groupList: action.payload.groupList };
     default:
       return state;
   }
 };
 
-export default groups;
+export default group;
