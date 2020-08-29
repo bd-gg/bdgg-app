@@ -5,6 +5,7 @@ import { FlatList, View, Text } from 'react-native';
 
 import image from '~/utils/image_sample';
 
+import { FloatingButton, AddButton } from '~/components/FloatingButton';
 import GroupListEntry from '~/components/GroupListEntry';
 
 const Container = styled.SafeAreaView`
@@ -32,32 +33,30 @@ function GroupList(props) {
   let data = props.groupList;
   if (!data) data = SampleList;
 
-  console.log(props);
-
   return (
-    <FlatList
-      data={data}
-      renderItem={({ item }) => (
-        <GroupListEntry
-          item={{
-            members: item.members,
-            gameTitle: item.image,
-            date: item.date,
-            party: item.party,
-            location: item.location,
-          }}
-        />
-      )}
-    />
+    <View>
+      <FlatList
+        data={data}
+        renderItem={({ item }) => (
+          <GroupListEntry
+            item={{
+              members: item.members,
+              gameTitle: item.image,
+              date: item.date,
+              party: item.party,
+              location: item.location,
+            }}
+          />
+        )}
+      />
+      <FloatingButton onPress={() => setShowInput(true)} />
+    </View>
   );
 }
 
 function mapStateToProps(state) {
-  console.log(state);
-
   return {
     groupList: state.group.groupList,
-    groupListSize: 20,
   };
 }
 

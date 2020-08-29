@@ -13,18 +13,6 @@ const Container = styled.SafeAreaView`
 const Stack = createStackNavigator();
 
 function GroupScreen() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Group List"
-        component={connect(null, mapDispatchToProps)(GroupListScreen)}
-      />
-    </Stack.Navigator>
-  );
-}
-
-function GroupListScreen(props) {
-  let getGroup = props.getGroup;
   fetch(
     'http://ec2-13-125-12-178.ap-northeast-2.compute.amazonaws.com:8080/users/1/groups',
     {
@@ -45,12 +33,35 @@ function GroupListScreen(props) {
     .catch((err) => {
       console.error(err);
     });
+
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Group List"
+        component={connect(
+          mapStateToProps,
+          mapDispatchToProps
+        )(GroupListScreen)}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function GroupListScreen(props) {
+  let getGroup = props.getGroup;
+
   return (
     <Container>
       <GroupList />
       <AddGroupLayout />
     </Container>
   );
+}
+
+function mapStateToProps(state) {
+  return {
+    groupList: state.group.groupList,
+  };
 }
 
 function mapDispatchToProps(dispatch) {

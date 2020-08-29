@@ -53,7 +53,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AddGroupInputLayout);
+export default connect(mapStateToProps, mapDispatchToProps)(AddGroupLayout);
