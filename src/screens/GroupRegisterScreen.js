@@ -6,7 +6,7 @@ import ToggleInputContainer from '~/components/ToggleOption';
 import MemoOption from '~/components/MemoOption';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-function MatchRegisterScreen() {
+function GroupRegisterScreen() {
     return (
       <View>
         <TextInputContainer icon="ios-trophy" hint="제목"></TextInputContainer>
@@ -35,4 +35,7 @@ function MatchRegisterScreen() {
     );
 }
 
-export default MatchRegisterScreen;
+export default GroupRegisterScreen;
+
+
+
