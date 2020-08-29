@@ -3,35 +3,61 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { FlatList, View, Text } from 'react-native';
 
-import MatchContainer from '~/containers/MatchContainer';
+import image from '~/utils/image_sample';
+
+import GroupListEntry from '~/components/GroupListEntry';
 
 const Container = styled.SafeAreaView`
   flex: 1;
 `;
 
-const GroupList = (props) => {
+const SampleList = [
+  {
+    party: '그룹 1',
+    date: '2020-08-08',
+    location: 'Seongnam',
+    gameTitle: 'Zenga',
+    members: [image[0], image[1], image[2], image[3]],
+  },
+  {
+    party: '그룹 2',
+    date: '2020-08-28',
+    location: 'Seould',
+    gameTitle: 'Gizmo',
+    members: [image[3], image[4], image[5], image[6]],
+  },
+];
+
+function GroupList(props) {
+  let data = props.groupList;
+  if (!data) data = SampleList;
+
+  console.log(props);
+
   return (
     <FlatList
-      data={props.groupList}
-      //   // keyExtractor={(item) => item.name}
+      data={data}
       renderItem={({ item }) => (
-        <MatchContainer
-          victory={false}
-          match={{
+        <GroupListEntry
+          item={{
+            members: item.members,
             gameTitle: item.image,
-            date: item.name,
-            party: item.place,
-            location: item.name,
+            date: item.date,
+            party: item.party,
+            location: item.location,
           }}
         />
       )}
     />
   );
-};
+}
 
 function mapStateToProps(state) {
+  console.log(state);
+
   return {
     groupList: state.group.groupList,
+    groupListSize: 20,
   };
 }
 
