@@ -17,28 +17,35 @@ const Container = styled.SafeAreaView`
 const Stack = createStackNavigator();
 
 function GroupScreen(props) {
-  let getGroup = props.getGroup;
-  fetch(
-    'http://ec2-13-125-12-178.ap-northeast-2.compute.amazonaws.com:8080/users/1/groups',
-    {
-      method: 'GET',
-      headers: { 'content-type': 'application/json' },
-    }
-  )
-    .then((res) => {
-      console.log('Get group list from server!!');
-      return res.json();
-    })
-    .then((res) => {
-      console.log('res.items: ', res.items);
-      console.log(props);
-      // res.items로 넣을 경우 무한 로딩
-      getGroup(res.items);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  //let getGroup = props.getGroup;
+  //fetch(
+    //'http://ec2-13-125-12-178.ap-northeast-2.compute.amazonaws.com:8080/users/1/groups',
+    //{
+      //method: 'GET',
+      //headers: { 'content-type': 'application/json' },
+    //}
+  //)
+    //.then((res) => {
+      //console.log('Get group list from server!!');
+      //return res.json();
+    //})
+    //.then((res) => {
+      //console.log('res.items: ', res.items);
+      //console.log(props);
+      //// res.items로 넣을 경우 무한 로딩
+      //getGroup(res.items);
+    //})
+    //.catch((err) => {
+      //console.error(err);
+    //});
+    const test = {
+        image:"exam1",
+        name:"exam2",
+        members:["b"],
+        place:"test3"
+    };
 
+  props.getGroup(test);
   return (
     <Stack.Navigator>
       <Stack.Screen

@@ -1,25 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 
 import TextInputContainer from '~/components/TextInputOption';
-import ToggleInputContainer from '~/components/ToggleOption';
 import MemoOption from '~/components/MemoOption';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-function GroupRegisterScreen() {
+import { connect } from 'react-redux';
+
+function GroupRegisterScreen(props) {
+    const [image, setImage] = useState("");
+    const [name, setName] = useState("");
+    const [place, setPlace] = useState("");
+    const [members, addMembers] = useState([]);
+
+    const tmpDATA = {
+        image:image,
+        name:name,
+        members:members,
+        place:place
+    }
     return (
       <View>
-        <TextInputContainer icon="ios-trophy" hint="제목"></TextInputContainer>
+        <TextInputContainer icon="ios-image" hint="Image" setText={setImage}></TextInputContainer>
         <TextInputContainer
-          icon="ios-calendar"
-          hint="일정"
+          icon="ios-person"
+          hint="이름"
+          setText={setName}
         ></TextInputContainer>
-        <ToggleInputContainer
-          icon="ios-trophy"
-          title="체크 옵션"
-        ></ToggleInputContainer>
-        <MemoOption icon="ios-document"></MemoOption>
-        <TouchableOpacity>
+        <TextInputContainer
+            // [TODO] Select Location icon
+          icon="ios-map"
+          hint="장소"
+          setText={setPlace}
+        ></TextInputContainer>
+        <TextInputContainer
+            // [TODO] Select Groups icon
+          icon="ios-add-groups"
+          hint="그룹원"
+        ></TextInputContainer>
+        <TouchableOpacity onPress={()=>{props.addGroup(tmpDATA)}}>
           <View
             style={{
               backgroundColor: '#0175DF',
@@ -35,7 +54,16 @@ function GroupRegisterScreen() {
     );
 }
 
-export default GroupRegisterScreen;
+function mapDispatchToProps(dispatch) {
+  return {
+    addGroup: (group) =>
+      dispatch({ type: 'ADD_GROUP', payload: group }),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(GroupRegisterScreen);
+
+
 
 
 
