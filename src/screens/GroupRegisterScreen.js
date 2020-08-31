@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 import TextInputContainer from '~/components/TextInputOption';
-import MemoOption from '~/components/MemoOption';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { connect } from 'react-redux';
+import  UserSearchScreen  from './UserSearchScreen'
 
 function GroupRegisterScreen(props) {
     const [image, setImage] = useState("");
     const [name, setName] = useState("");
     const [place, setPlace] = useState("");
     const [members, addMembers] = useState([]);
+    const [visibleSearch, setVisible] = useState(false);
 
     const tmpDATA = {
         image:image,
@@ -19,8 +21,16 @@ function GroupRegisterScreen(props) {
         members:members,
         place:place
     }
+
+      
     return (
       <View>
+        <UserSearchScreen
+            isVisible={visibleSearch}
+            close={() => {
+                setVisible(false);
+            }}
+        />
         <TextInputContainer icon="ios-image" hint="Image" setText={setImage}></TextInputContainer>
         <TextInputContainer
           icon="ios-person"
@@ -38,6 +48,17 @@ function GroupRegisterScreen(props) {
           icon="ios-add-groups"
           hint="그룹원"
         ></TextInputContainer>
+        <TouchableOpacity onPress={()=>{setVisible(true)}}>
+            <View style={styles.searchBox}>
+              <View style={styles.searchLayout}>
+                <Text style={{ color: 'grey', fontSize: 16 }}>사용자 검색</Text>
+              </View>
+              <View height="100%" alignItems="center" justifyContent="center">
+                <Ionicons name="ios-search" size={28} color="grey" />
+              </View>
+            </View>
+        </TouchableOpacity>
+
         <TouchableOpacity onPress={()=>{props.addGroup(tmpDATA)}}>
           <View
             style={{
@@ -63,6 +84,19 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(null, mapDispatchToProps)(GroupRegisterScreen);
 
+const styles = StyleSheet.create({
+  searchBox: {
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
+    flexDirection: 'row',
+    height: 46,
+    paddingHorizontal: 10,
+  },
+  searchLayout: {
+    flex: 2,
+    justifyContent: 'center',
+  },
+});
 
 
 

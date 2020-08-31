@@ -9,6 +9,7 @@ import { FloatingButton } from '~/components/FloatingButton';
 import GroupListEntry from '~/components/GroupListEntry';
 
 import image from '~/utils/image_sample';
+import UserSearchScreen from './UserSearchScreen';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -56,6 +57,7 @@ function GroupScreen(props) {
         name="Group Register"
         component={GroupRegisterScreen}
       />
+
     </Stack.Navigator>
   );
 }
