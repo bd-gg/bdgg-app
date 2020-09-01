@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { connect } from 'react-redux';
@@ -20,44 +21,43 @@ const Stack = createStackNavigator();
 function GroupScreen(props) {
   //let getGroup = props.getGroup;
   //fetch(
-    //'http://ec2-13-125-12-178.ap-northeast-2.compute.amazonaws.com:8080/users/1/groups',
-    //{
-      //method: 'GET',
-      //headers: { 'content-type': 'application/json' },
-    //}
+  //'http://ec2-13-125-12-178.ap-northeast-2.compute.amazonaws.com:8080/users/1/groups',
+  //{
+  //method: 'GET',
+  //headers: { 'content-type': 'application/json' },
+  //}
   //)
-    //.then((res) => {
-      //console.log('Get group list from server!!');
-      //return res.json();
-    //})
-    //.then((res) => {
-      //console.log('res.items: ', res.items);
-      //console.log(props);
-      //// res.items로 넣을 경우 무한 로딩
-      //getGroup(res.items);
-    //})
-    //.catch((err) => {
-      //console.error(err);
-    //});
-    const test = {
-        image:"exam1",
-        name:"exam2",
-        members:["b"],
-        place:"test3"
-    };
+  //.then((res) => {
+  //console.log('Get group list from server!!');
+  //return res.json();
+  //})
+  //.then((res) => {
+  //console.log('res.items: ', res.items);
+  //console.log(props);
+  //// res.items로 넣을 경우 무한 로딩
+  //getGroup(res.items);
+  //})
+  //.catch((err) => {
+  //console.error(err);
+  //});
+  const test = {
+    image: 'exam1',
+    name: 'exam2',
+    members: ['b'],
+    place: 'test3',
+  };
 
-  props.getGroup(test);
+  console.log(`GroupScreen Start`);
+  let data = props.getGroup(1);
+  console.log(`GroupScreen End`);
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="Group List"
         component={GroupListScreen}
+        options={{ data: data }}
       />
-      <Stack.Screen
-        name="Group Register"
-        component={GroupRegisterScreen}
-      />
-
+      <Stack.Screen name="Group Register" component={GroupRegisterScreen} />
     </Stack.Navigator>
   );
 }
@@ -80,7 +80,8 @@ const SampleList = [
 ];
 
 function GroupListScreen(props) {
-  let data = props.groupList;
+  console.log(`GroupListScreen`, props.data);
+  let data = props.data;
   if (!data) data = SampleList;
   return (
     <Container>
@@ -99,7 +100,11 @@ function GroupListScreen(props) {
             />
           )}
         />
-        <FloatingButton onPress={()=> { props.navigation.navigate('Group Register'); }} />
+        <FloatingButton
+          onPress={() => {
+            props.navigation.navigate('Group Register');
+          }}
+        />
       </View>
     </Container>
   );
@@ -113,9 +118,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getGroup: (groupList) =>
-      dispatch({ type: 'GET_GROUP', payload: { groupList } }),
+    getGroup: (userId) => dispatch({ type: 'GET_GROUP', payload: { userId } }),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GroupScreen);
+export default connect(null, mapDispatchToProps)(GroupScreen);
