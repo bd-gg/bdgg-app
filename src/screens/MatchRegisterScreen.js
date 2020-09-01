@@ -6,8 +6,7 @@ import ToggleInputContainer from '~/components/ToggleOption';
 import MemoOption from '~/components/MemoOption';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default class MatchRegisterScreen extends React.Component {
-  render() {
+function MatchRegisterScreen() {
     return (
       <View>
         <TextInputContainer icon="ios-trophy" hint="제목"></TextInputContainer>
@@ -34,5 +33,6 @@ export default class MatchRegisterScreen extends React.Component {
         </TouchableOpacity>
       </View>
     );
-  }
 }
+
+export default MatchRegisterScreen;
