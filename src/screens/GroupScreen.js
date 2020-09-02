@@ -6,11 +6,9 @@ import { FlatList, View } from 'react-native';
 
 import styled from 'styled-components';
 import GroupRegisterScreen from './GroupRegisterScreen';
-import { FloatingButton } from '~/components/FloatingButton';
-import GroupListEntry from '~/components/GroupListEntry';
 
-import image from '~/utils/image_sample';
-import UserSearchScreen from './UserSearchScreen';
+import GroupListScreen from './GroupListScreen';
+import { getGroupInfo } from '~/api/boardgamegeek';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -48,77 +46,20 @@ function GroupScreen(props) {
   };
 
   console.log(`GroupScreen Start`);
-  let data = props.getGroup(1);
+  getGroupInfo(1, props.getGroup);
   console.log(`GroupScreen End`);
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="Group List"
-        component={GroupListScreen}
-        options={{ data: data }}
-      />
+      <Stack.Screen name="Group List" component={GroupListScreen} />
       <Stack.Screen name="Group Register" component={GroupRegisterScreen} />
     </Stack.Navigator>
   );
 }
 
-const SampleList = [
-  {
-    party: '그룹 1',
-    date: '2020-08-08',
-    location: 'Seongnam',
-    gameTitle: 'Zenga',
-    members: [image[0], image[1], image[2], image[3]],
-  },
-  {
-    party: '그룹 2',
-    date: '2020-08-28',
-    location: 'Seould',
-    gameTitle: 'Gizmo',
-    members: [image[3], image[4], image[5], image[6]],
-  },
-];
-
-function GroupListScreen(props) {
-  console.log(`GroupListScreen`, props.data);
-  let data = props.data;
-  if (!data) data = SampleList;
-  return (
-    <Container>
-      <View>
-        <FlatList
-          data={data}
-          renderItem={({ item }) => (
-            <GroupListEntry
-              item={{
-                members: item.members,
-                gameTitle: item.image,
-                date: item.date,
-                party: item.party,
-                location: item.location,
-              }}
-            />
-          )}
-        />
-        <FloatingButton
-          onPress={() => {
-            props.navigation.navigate('Group Register');
-          }}
-        />
-      </View>
-    </Container>
-  );
-}
-
-function mapStateToProps(state) {
-  return {
-    groupList: state.group.groupList,
-  };
-}
-
 function mapDispatchToProps(dispatch) {
   return {
-    getGroup: (userId) => dispatch({ type: 'GET_GROUP', payload: { userId } }),
+    getGroup: (groupList) =>
+      dispatch({ type: 'GET_GROUP', payload: { groupList } }),
   };
 }
 

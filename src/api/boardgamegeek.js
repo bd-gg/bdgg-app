@@ -14,8 +14,7 @@ export function getBoardGameInfo(gid) {
     });
 }
 
-export function getGroupInfo(userId) {
-  const [data, setData] = useState([]);
+export const getGroupInfo = (userId, getGroupFunction) => {
   fetch(
     `http://ec2-13-125-12-178.ap-northeast-2.compute.amazonaws.com:8080/users/${userId}/groups`,
     {
@@ -28,13 +27,10 @@ export function getGroupInfo(userId) {
       return res.json();
     })
     .then((res) => {
-      console.log('res.items: ', res.items);
-      setData(res.items);
+      console.log('Got Data from server res.items: ', res.items);
+      getGroupFunction(res.items);
     })
     .catch((err) => {
       console.error(err);
     });
-  console.log(`Data`, data);
-
-  return data;
-}
+};

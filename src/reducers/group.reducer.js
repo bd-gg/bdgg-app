@@ -1,4 +1,3 @@
-import { getGroupInfo } from '~/api/boardgamegeek';
 /* reducer */
 const group = (state = {}, action) => {
   switch (action.type) {
@@ -11,9 +10,8 @@ const group = (state = {}, action) => {
     case 'REMOVE_GROUP':
       return [state.splice(action.index, 1)];
     case 'GET_GROUP':
-      console.log('GET GROUP!!!!!', action.payload.userId);
-      // [TODO] This should be action.payload.groupList???
-      return { groupList: getGroupInfo(action.payload.userId) };
+      console.log('GET GROUP!!!!', action.payload.groupList, state);
+      return { groupList: action.payload.groupList };
     default:
       return state;
   }
