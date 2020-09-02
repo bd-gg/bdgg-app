@@ -42,11 +42,11 @@ function GroupListScreen(props) {
           renderItem={({ item }) => (
             <GroupListEntry
               item={{
-                members: item.members,
-                gameTitle: item.image,
-                date: item.date,
-                party: item.party,
-                location: item.location,
+                members: [],
+                gameTitle: item.name,
+                date: item.name,
+                party: item.place,
+                location: item.place,
               }}
             />
           )}
