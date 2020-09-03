@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { FlatList, View } from 'react-native';
 
-import styled from 'styled-components';
 import { FloatingButton } from '~/components/FloatingButton';
 import GroupListEntry from '~/components/GroupListEntry';
+import GroupListEntryPopup from '~/components/GroupListEntryPopup';
 
 import image from '~/utils/image_sample';
 
@@ -29,11 +29,13 @@ const SampleList = [
 function GroupListScreen(props) {
   let data = props.groupList;
   if (!data) data = SampleList;
+
+  const [isPopupVisible, setPopupVisible] = useState(false);
   return (
     <View style={{ flex: 1 }}>
       <FlatList
         data={data}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <GroupListEntry
             item={{
               members: [],
@@ -42,12 +44,23 @@ function GroupListScreen(props) {
               party: item.place,
               location: item.place,
             }}
+            index={index}
+            onLongPress={(index) => {
+              //TODO: set index to popup
+              setPopupVisible(true);
+            }}
           />
         )}
       />
       <FloatingButton
         onPress={() => {
           props.navigation.navigate('Group Register');
+        }}
+      />
+      <GroupListEntryPopup
+        isVisible={isPopupVisible}
+        close={() => {
+          setPopupVisible(false);
         }}
       />
     </View>
