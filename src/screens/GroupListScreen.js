@@ -9,10 +9,6 @@ import GroupListEntry from '~/components/GroupListEntry';
 
 import image from '~/utils/image_sample';
 
-const Container = styled.SafeAreaView`
-  flex: 1;
-`;
-
 const SampleList = [
   {
     party: '그룹 1',
@@ -31,33 +27,30 @@ const SampleList = [
 ];
 
 function GroupListScreen(props) {
-  console.log(`GroupListScreen`, props.groupList);
   let data = props.groupList;
   if (!data) data = SampleList;
   return (
-    <Container>
-      <View>
-        <FlatList
-          data={data}
-          renderItem={({ item }) => (
-            <GroupListEntry
-              item={{
-                members: [],
-                gameTitle: item.name,
-                date: item.name,
-                party: item.place,
-                location: item.place,
-              }}
-            />
-          )}
-        />
-        <FloatingButton
-          onPress={() => {
-            props.navigation.navigate('Group Register');
-          }}
-        />
-      </View>
-    </Container>
+    <View style={{ flex: 1 }}>
+      <FlatList
+        data={data}
+        renderItem={({ item }) => (
+          <GroupListEntry
+            item={{
+              members: [],
+              gameTitle: item.name,
+              date: item.name,
+              party: item.place,
+              location: item.place,
+            }}
+          />
+        )}
+      />
+      <FloatingButton
+        onPress={() => {
+          props.navigation.navigate('Group Register');
+        }}
+      />
+    </View>
   );
 }
 
