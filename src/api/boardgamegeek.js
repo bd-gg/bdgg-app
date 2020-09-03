@@ -1,4 +1,5 @@
 import { Games } from '~/data/GameCache';
+import { useState } from 'react';
 
 export function getBoardGameInfo(gid) {
   if (Games[gid]) return Promise.resolve(Games[gid]);
@@ -12,3 +13,24 @@ export function getBoardGameInfo(gid) {
       console.error(`Query failed - ${error}`);
     });
 }
+
+export const getGroupInfo = (userId, getGroupFunction) => {
+  fetch(
+    `http://ec2-13-125-12-178.ap-northeast-2.compute.amazonaws.com:8080/users/${userId}/groups`,
+    {
+      method: 'GET',
+      headers: { 'content-type': 'application/json' },
+    }
+  )
+    .then((res) => {
+      console.log('Get group list from server!!');
+      return res.json();
+    })
+    .then((res) => {
+      console.log('Got Data from server res.items: ', res.items);
+      getGroupFunction(res.items);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
