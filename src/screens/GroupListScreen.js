@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { FlatList, View } from 'react-native';
 
@@ -8,6 +8,7 @@ import GroupListEntry from '~/components/GroupListEntry';
 import GroupListEntryPopup from '~/components/GroupListEntryPopup';
 
 import image from '~/utils/image_sample';
+import { getGroupInfo } from '~/api/boardgamegeek';
 
 const SampleList = [
   {
@@ -27,6 +28,12 @@ const SampleList = [
 ];
 
 function GroupListScreen(props) {
+  console.log('GroupListScreen is called');
+
+  useEffect(() => {
+    getGroupInfo(1, props.getGroup);
+  }, []);
+
   let data = props.groupList;
   if (!data) data = SampleList;
 
@@ -51,6 +58,7 @@ function GroupListScreen(props) {
             }}
           />
         )}
+        keyExtractor={(item, index) => index.toString()}
       />
       <FloatingButton
         onPress={() => {
@@ -73,4 +81,11 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(GroupListScreen);
+function mapDispatchToProps(dispatch) {
+  return {
+    getGroup: (groupList) =>
+      dispatch({ type: 'GET_GROUP', payload: { groupList } }),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GroupListScreen);
