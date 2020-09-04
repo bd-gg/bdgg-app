@@ -58,6 +58,7 @@ function GroupListScreen(props) {
             }}
           />
         )}
+        keyExtractor={(item, index) => index.toString()}
       />
       <FloatingButton
         onPress={() => {
