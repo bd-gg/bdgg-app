@@ -8,7 +8,6 @@ import styled from 'styled-components';
 import GroupRegisterScreen from './GroupRegisterScreen';
 
 import GroupListScreen from './GroupListScreen';
-import { getGroupInfo } from '~/api/boardgamegeek';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -45,9 +44,6 @@ function GroupScreen(props) {
     place: 'test3',
   };
 
-  console.log(`GroupScreen Start`);
-  getGroupInfo(1, props.getGroup);
-  console.log(`GroupScreen End`);
   return (
     <Stack.Navigator>
       <Stack.Screen name="Group List" component={GroupListScreen} />
@@ -56,11 +52,4 @@ function GroupScreen(props) {
   );
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    getGroup: (groupList) =>
-      dispatch({ type: 'GET_GROUP', payload: { groupList } }),
-  };
-}
-
-export default connect(null, mapDispatchToProps)(GroupScreen);
+export default GroupScreen;
