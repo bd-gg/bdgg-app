@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  SafeAreaView,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import OverlayViewContainer from '~/containers/OverlayViewContainer';
@@ -24,69 +25,71 @@ export default function UserSearchScreen(props) {
       onRequestClose={props.close}
       style={{ margin: 0 }}
     >
-      <View style={styles.root}>
-        <View style={styles.searchBox}>
-          <TouchableOpacity onPress={props.close}>
-            <View style={styles.centeredIcon}>
-              <Ionicons name="ios-arrow-back" size={28} color="grey" />
-            </View>
-          </TouchableOpacity>
-          <TextInput
-            style={styles.textInput}
-            placeholder="사용자 검색"
-            ref={(input) => {
-              textInput = input;
-            }}
-          />
-          <TouchableOpacity
-            onPress={() => {
-              alert('submit');
-            }}
-          >
-            <View style={styles.centeredIcon}>
-              <Ionicons name="ios-search" size={28} color="grey" />
-            </View>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.recent}>
-          <Text style={{ fontSize: 20 }}>최근 검색</Text>
-          <View
-            style={{
-              marginTop: 15,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Text
-              style={{
-                color: 'grey',
-                fontSize: 16,
+      <SafeAreaView flex={1}>
+        <View style={styles.root}>
+          <View style={styles.searchBox}>
+            <TouchableOpacity onPress={props.close}>
+              <View style={styles.centeredIcon}>
+                <Ionicons name="ios-arrow-back" size={28} color="grey" />
+              </View>
+            </TouchableOpacity>
+            <TextInput
+              style={styles.textInput}
+              placeholder="사용자 검색"
+              ref={(input) => {
+                textInput = input;
+              }}
+            />
+            <TouchableOpacity
+              onPress={() => {
+                alert('submit');
               }}
             >
-              검색 기록이 없습니다 .
-            </Text>
+              <View style={styles.centeredIcon}>
+                <Ionicons name="ios-search" size={28} color="grey" />
+              </View>
+            </TouchableOpacity>
           </View>
-        </View>
-        <View style={styles.recent}>
-          <Text style={{ fontSize: 20 }}>검색 결과</Text>
-          <View
-            style={{
-              marginTop: 15,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Text
+          <View style={styles.recent}>
+            <Text style={{ fontSize: 20 }}>최근 검색</Text>
+            <View
               style={{
-                color: 'grey',
-                fontSize: 16,
+                marginTop: 15,
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
             >
-              검색 결과가 없습니다.
-            </Text>
+              <Text
+                style={{
+                  color: 'grey',
+                  fontSize: 16,
+                }}
+              >
+                검색 기록이 없습니다 .
+              </Text>
+            </View>
+          </View>
+          <View style={styles.recent}>
+            <Text style={{ fontSize: 20 }}>검색 결과</Text>
+            <View
+              style={{
+                marginTop: 15,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Text
+                style={{
+                  color: 'grey',
+                  fontSize: 16,
+                }}
+              >
+                검색 결과가 없습니다.
+              </Text>
+            </View>
           </View>
         </View>
-      </View>
+      </SafeAreaView>
     </OverlayViewContainer>
   );
 }
