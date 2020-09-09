@@ -17,7 +17,7 @@ export default class GameThumbNail extends React.Component {
 
   componentDidMount() {
     getBoardGameInfo(this.state.gid).then((res) => {
-      this.setState({ url: res.thumbnail });
+      this.setState(() => ({ url: res.thumbnail }));
     });
   }
 
