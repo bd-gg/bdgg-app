@@ -29,7 +29,7 @@ export default function MatchContainer(props) {
         <View flexDirection="column" marginLeft={8} flex={1}>
           <Text style={styles.title}>{gameTitle}</Text>
           <Text style={styles.date}>
-            {describeDate(item.playedTime.substring(0, 19))} |{' '}
+            {describeDate(item.playedTime.substring(0, 19))}|{' '}
             {formatDate(item.playedTime.substring(0, 19))}
           </Text>
           <Text style={styles.optional}>
