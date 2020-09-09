@@ -10,6 +10,7 @@ export default function MatchContainer(props) {
 
   const [gameTitle, setGameTitle] = useState(0);
   console.log('====MatchContainer is called====');
+  console.log(item);
 
   useEffect(() => {
     getBoardGameInfo(item.gameId).then((res) => {
@@ -28,7 +29,8 @@ export default function MatchContainer(props) {
         <View flexDirection="column" marginLeft={8} flex={1}>
           <Text style={styles.title}>{gameTitle}</Text>
           <Text style={styles.date}>
-            {describeDate(item.playedTime)} | {formatDate(item.playedTime)}
+            {describeDate(item.playedTime.substring(0, 19))} |{' '}
+            {formatDate(item.playedTime.substring(0, 19))}
           </Text>
           <Text style={styles.optional}>
             {item.party || 'SK2-2'} | {item.place}
