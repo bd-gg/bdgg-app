@@ -34,10 +34,7 @@ const SampleList = [
 function GroupListScreen(props) {
   console.log('GroupListScreen is called');
 
-  useEffect(() => {
-    getGroupInfo(1, props.getGroup);
-  }, []);
-
+  getGroupInfo(1, props.getGroup);
   let data = props.groupList;
   if (!data) data = SampleList;
 
