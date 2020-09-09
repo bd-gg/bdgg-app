@@ -17,6 +17,8 @@ const SampleList = [
     location: 'Seongnam',
     gameTitle: 'Zenga',
     members: [image[0], image[1], image[2], image[3]],
+    gameId: 174430,
+    id: 1,
   },
   {
     party: '그룹 2',
@@ -24,6 +26,8 @@ const SampleList = [
     location: 'Seould',
     gameTitle: 'Gizmo',
     members: [image[3], image[4], image[5], image[6]],
+    gameId: 174431,
+    id: 2,
   },
 ];
 
@@ -52,6 +56,12 @@ function GroupListScreen(props) {
               location: item.place,
             }}
             index={index}
+            onPress={(index) => {
+              props.navigation.navigate('Match List', {
+                groupId: item.id,
+                index: index,
+              });
+            }}
             onLongPress={(index) => {
               //TODO: set index to popup
               setPopupVisible(true);
