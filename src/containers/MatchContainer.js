@@ -1,46 +1,48 @@
-import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text, Image, AsyncStorage } from 'react-native';
 
 import GameThumbNail from '~/components/GameThumbNail';
 import { formatDate, describeDate } from '~/utils/date';
+import { getBoardGameInfo } from '~/api/boardgamegeek';
 
-export default class MatchContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      victory: this.props.victory,
-    };
-  }
-  render() {
-    return (
-      <View style={styles.root}>
-        {this.state.victory ? VictoryHead() : DefeatHead()}
-        <View style={[styles.body]}>
-          <GameThumbNail gid={174430} size={70} />
-          <View flexDirection="column" marginLeft={8} flex={1}>
-            <Text style={styles.title}>{this.props.match.gameTitle}</Text>
-            <Text style={styles.date}>
-              {describeDate(this.props.match.date)} |{' '}
-              {formatDate(this.props.match.date)}
-            </Text>
-            <Text style={styles.optional}>
-              {this.props.match.party} | {this.props.match.location}
-            </Text>
-            <View />
-          </View>
-          {/* <View backgroundColor="green" borderTopLength={100} flex={1} /> */}
+export default function MatchContainer(props) {
+  const { item } = props;
+
+  const [gameTitle, setGameTitle] = useState(0);
+  console.log('====MatchContainer is called====');
+
+  useEffect(() => {
+    getBoardGameInfo(item.gameId).then((res) => {
+      setGameTitle(res.name);
+    });
+  }, []);
+  // console.log(`gameTitle = ${gameTitle}`);
+
+  return (
+    <View style={styles.root}>
+      {AsyncStorage.getItem('myId') == item.winnerId
+        ? VictoryHead()
+        : DefeatHead()}
+      <View style={[styles.body]}>
+        <GameThumbNail gid={item.gameId} size={70} />
+        <View flexDirection="column" marginLeft={8} flex={1}>
+          <Text style={styles.title}>{gameTitle}</Text>
+          <Text style={styles.date}>
+            {describeDate(item.playedTime)} | {formatDate(item.playedTime)}
+          </Text>
+          <Text style={styles.optional}>
+            {item.party || 'SK2-2'} | {item.place}
+          </Text>
+          <View />
         </View>
-        <View style={[styles.tail]}>
-          <Text style={styles.result_rank}>4</Text>
-          <Text>th</Text>
-        </View>
+        {/* <View backgroundColor="green" borderTopLength={100} flex={1} /> */}
       </View>
-    );
-  }
-
-  dateDiff(date) {
-    let now = new Date().getDate();
-  }
+      <View style={[styles.tail]}>
+        <Text style={styles.result_rank}>4</Text>
+        <Text>th</Text>
+      </View>
+    </View>
+  );
 }
 
 function VictoryHead() {
