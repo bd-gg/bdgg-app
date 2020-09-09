@@ -45,7 +45,7 @@ function MatchListScreen(props) {
       <FlatList
         data={data}
         renderItem={({ item, index }) => (
-          <MatchContainer
+          <MatchListEntry
             key={matchListId}
             item={item}
             index={index}
