@@ -20,7 +20,11 @@ function GroupScreen(props) {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Group List" component={GroupListScreen} />
-      <Stack.Screen name="Match List" component={MatchListScreen} />
+      <Stack.Screen
+        name="Match List"
+        component={MatchListScreen}
+        options={({ route }) => ({ title: route.params.name })}
+      />
       <Stack.Screen name="Group Register" component={GroupRegisterScreen} />
     </Stack.Navigator>
   );
