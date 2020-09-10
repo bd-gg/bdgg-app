@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
   root: {
     backgroundColor: 'white',
     flex: 1,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
   },
   searchBox: {
     backgroundColor: '#f0f0f0',
