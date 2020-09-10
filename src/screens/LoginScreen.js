@@ -72,6 +72,7 @@ function LoginScreen(props) {
             console.log(res);
             AsyncStorage.setItem('bdgg-accessToken', res.accessToken);
             AsyncStorage.setItem('bdgg-refreshToken', res.refreshToken);
+            AsyncStorage.setItem('myId', '100');
           })
           .catch((err) => {
             console.error(err);

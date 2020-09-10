@@ -15,7 +15,7 @@ export default function GroupListEntry(props) {
   const item = props.item;
 
   let __onPressed = () => {
-    alert('onPress not implemented.');
+    props.onPress(index);
   };
   let __onLongPressed = () => {
     props.onLongPress(index);
