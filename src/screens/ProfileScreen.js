@@ -25,11 +25,6 @@ export default function ProfileScreen(props) {
           toggleSearch(false);
         }}
       />
-      <FloatingButton
-        onPress={() => {
-          props.navigation.navigate('MatchRegister');
-        }}
-      />
       <View alignItems="center" marginTop={15}>
         <Image
           style={styles.logo}
