@@ -1,5 +1,4 @@
 import { Games } from '~/data/GameCache';
-import { useState } from 'react';
 
 export function getBoardGameInfo(gid) {
   if (Games[gid]) {
@@ -56,5 +55,45 @@ export const getMatchListInfo = (groupId, getMatchFunction) => {
     })
     .catch((err) => {
       console.error(err);
+    });
+};
+
+export const addGroupInfo = (data, addGroupFunction) => {
+  fetch(
+    `http://ec2-13-125-12-178.ap-northeast-2.compute.amazonaws.com:8080/groups`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }
+  )
+    .then((res) => {
+      console.log('Got First Response', res.status);
+      return res.json();
+    })
+    .then((res) => {
+      console.log('Response from server', res.item);
+      addGroupFunction();
+    });
+};
+
+export const getUsersByKey = (key) => {
+  console.log('User id is', key);
+  fetch(
+    `http://ec2-13-125-12-178.ap-northeast-2.compute.amazonaws.com:8080/users?username=${key}`,
+    {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    }
+  )
+    .then((res) => {
+      return res.json();
+    })
+    .then((res) => {
+      console.log('Get User By key', res.item);
     });
 };

@@ -8,12 +8,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { connect } from 'react-redux';
 import UserSearchScreen from './UserSearchScreen';
+import { addGroupInfo } from '../api/boardgamegeek';
 
 function GroupRegisterScreen(props) {
   const [image, setImage] = useState('');
   const [name, setName] = useState('');
   const [place, setPlace] = useState('');
-  const [members, addMembers] = useState([]);
+  const [members, addMembers] = useState([1]);
   const [visibleSearch, setVisible] = useState(false);
 
   const tmpDATA = {
@@ -69,7 +70,7 @@ function GroupRegisterScreen(props) {
 
       <TouchableOpacity
         onPress={() => {
-          props.addGroup(tmpDATA);
+          addGroupInfo(tmpDATA, props.addGroup);
         }}
       >
         <View

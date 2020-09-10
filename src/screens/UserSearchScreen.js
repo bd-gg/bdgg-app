@@ -12,6 +12,7 @@ import OverlayViewContainer from '~/containers/OverlayViewContainer';
 
 export default function UserSearchScreen(props) {
   let textInput;
+
   return (
     <OverlayViewContainer
       isVisible={props.isVisible}
@@ -35,7 +36,7 @@ export default function UserSearchScreen(props) {
             </TouchableOpacity>
             <TextInput
               style={styles.textInput}
-              placeholder="사용자 검색"
+              placeholder="3글자 이상 검색"
               ref={(input) => {
                 textInput = input;
               }}
