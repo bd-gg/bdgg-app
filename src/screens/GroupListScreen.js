@@ -57,8 +57,10 @@ function GroupListScreen(props) {
             }}
             index={index}
             onPress={(index) => {
+              let memberNo = item.members.length;
               props.navigation.navigate('Match List', {
                 name: item.name,
+                memberNo: memberNo,
                 groupId: item.id,
                 index: index,
               });

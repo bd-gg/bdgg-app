@@ -15,6 +15,7 @@ const SampleList = [
   {
     party: '매치 1',
     date: '2020-08-08',
+    playedTime: '2020-05-10T10:20:30.000+0000',
     location: 'Seongnam',
     gameTitle: 'Zenga',
     members: [image[0], image[1], image[2], image[3]],
