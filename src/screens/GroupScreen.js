@@ -29,10 +29,10 @@ function GroupScreen(props) {
         name="Match List"
         component={MatchListScreen}
         options={({ route }) => ({
-          title: route.params.name,
-          headerTitle: (props) => {
+          headerTitle: () => {
             return <MatchHeader params={route.params}></MatchHeader>;
           },
+          headerBackTitleVisible: false,
         })}
       />
       <Stack.Screen name="Group Register" component={GroupRegisterScreen} />
