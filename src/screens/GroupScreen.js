@@ -2,12 +2,11 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { connect } from 'react-redux';
-import { FlatList, View } from 'react-native';
 
 import styled from 'styled-components';
 import GroupRegisterScreen from './GroupRegisterScreen';
 
-import GroupListScreen from './GroupListScreen';
+import GroupListScreen, { GroupListHeaderRight } from './GroupListScreen';
 import MatchListScreen from './MatchListScreen';
 
 import MatchHeader from '../headers/MatchHeader';
@@ -21,7 +20,11 @@ const Stack = createStackNavigator();
 function GroupScreen(props) {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Group List" component={GroupListScreen} />
+      <Stack.Screen
+        name="Group List"
+        component={GroupListScreen}
+        options={{ headerRight: GroupListHeaderRight }}
+      />
       <Stack.Screen
         name="Match List"
         component={MatchListScreen}

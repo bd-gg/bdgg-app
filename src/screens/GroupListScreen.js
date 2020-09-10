@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { FlatList, View } from 'react-native';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { FloatingButton } from '~/components/FloatingButton';
 import GroupListEntry from '~/components/GroupListEntry';
@@ -99,6 +100,45 @@ function mapDispatchToProps(dispatch) {
     getGroup: (groupList) =>
       dispatch({ type: 'GET_GROUP', payload: { groupList } }),
   };
+}
+
+export function GroupListHeaderRight(props) {
+  return (
+    <View style={{ flexDirection: 'row' }}>
+      <TouchableOpacity
+        onPress={() => {
+          alert('Not yet implemented');
+        }}
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}
+      >
+        <Ionicons
+          name="ios-search"
+          size={28}
+          color="grey"
+          style={{ paddingRight: 15 }}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          alert('Not yet implemented2');
+        }}
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}
+      >
+        <Ionicons
+          name="ios-menu"
+          size={36}
+          color="grey"
+          style={{ paddingRight: 20 }}
+        />
+      </TouchableOpacity>
+    </View>
+  );
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupListScreen);
