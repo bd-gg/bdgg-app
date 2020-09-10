@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { FlatList, View } from 'react-native';
 
-import { FloatingButton } from '~/components/FloatingButton';
+import { AddButton } from '~/components/FloatingButton';
 import MatchListEntry from '~/components/MatchListEntry';
 import MatchListEntryPopup from '~/components/MatchListEntryPopup';
 
@@ -58,7 +58,7 @@ function MatchListScreen(props) {
         )}
         keyExtractor={(item, index) => index.toString()}
       />
-      <FloatingButton
+      <AddButton
         onPress={() => {
           props.navigation.navigate('Match Register');
         }}

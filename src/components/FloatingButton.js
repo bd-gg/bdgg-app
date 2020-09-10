@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, TouchableHighlight, Text } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import EntypoIcons from 'react-native-vector-icons/Entypo';
 
 export function FloatingButton(props) {
   return (
@@ -14,9 +15,9 @@ export function FloatingButton(props) {
 
 export function AddButton(props) {
   return (
-    <TouchableHighlight style={styles.button} onPress={props.onPress}>
+    <TouchableHighlight style={styles.container} onPress={props.onPress}>
       <View style={styles.position}>
-        <Text>ADD</Text>
+        <EntypoIcons style={styles.icon} name="pencil" />
       </View>
     </TouchableHighlight>
   );
