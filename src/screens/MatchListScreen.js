@@ -60,7 +60,9 @@ function MatchListScreen(props) {
       />
       <AddButton
         onPress={() => {
-          props.navigation.navigate('Match Register');
+          props.navigation.navigate('Match Register', {
+            name: '보드게임 결과 기록',
+          });
         }}
       />
       <MatchListEntryPopup

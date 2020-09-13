@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  TouchableOpacity,
+  ImagePropTypes,
+} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import OptionEntry from '~/components/OptionEntry';
+import * as _ from 'lodash';
 
 export default function TextInputContainer(props) {
   const [isFocused, toggleFocus] = useState(false);
   let textinput = null;
   return (
-    <OptionEntry icon={props.icon}>
+    <OptionEntry style={props.style} icon={props.icon} onPress={props.onPress}>
       <TextInput
         style={styles.textInput}
         placeholder={props.hint || '텍스트 입력'}
@@ -17,7 +24,7 @@ export default function TextInputContainer(props) {
         onBlur={() => {
           toggleFocus(false);
         }}
-        //ref={(ref) => (textinput = ref)}
+        ref={(ref) => (textinput = ref)}
         onChangeText={props.setText}
       />
       <View justifyContent="center" paddingRight={10}>
@@ -31,6 +38,7 @@ export default function TextInputContainer(props) {
           </TouchableOpacity>
         )}
       </View>
+      <View>{props.children}</View>
     </OptionEntry>
   );
 }

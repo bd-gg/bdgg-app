@@ -33,24 +33,24 @@ function GroupRegisterScreen(props) {
         }}
       />
       <TextInputContainer
-        icon="ios-image"
+        icon={<Ionicons name={'ios-image'} style={styles.icon}></Ionicons>}
         hint="Image"
         setText={setImage}
       ></TextInputContainer>
       <TextInputContainer
-        icon="ios-person"
+        icon=<Ionicons name={'ios-person'} style={styles.icon}></Ionicons>
         hint="이름"
         setText={setName}
       ></TextInputContainer>
       <TextInputContainer
         // [TODO] Select Location icon
-        icon="ios-map"
+        icon=<Ionicons name={'ios-map'} style={styles.icon}></Ionicons>
         hint="장소"
         setText={setPlace}
       ></TextInputContainer>
       <TextInputContainer
         // [TODO] Select Groups icon
-        icon="ios-add-groups"
+        icon=<Ionicons name={'ios-add-groups'} style={styles.icon}></Ionicons>
         hint="그룹원"
       ></TextInputContainer>
       <TouchableOpacity
@@ -107,5 +107,10 @@ const styles = StyleSheet.create({
   searchLayout: {
     flex: 2,
     justifyContent: 'center',
+  },
+  icon: {
+    color: 'grey',
+    fontSize: 24,
+    paddingRight: 20,
   },
 });

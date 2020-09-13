@@ -6,7 +6,7 @@ export default function MemoOption(props) {
   const [height, setHeight] = useState(80);
 
   return (
-    <OptionEntry icon={props.icon} style={{ height }}>
+    <OptionEntry icon={props.icon} style={{ ...height, ...props.style }}>
       <TextInput
         style={styles.textInput}
         multiline
