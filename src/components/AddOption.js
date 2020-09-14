@@ -8,12 +8,13 @@ export default function AddContainer(props) {
   return (
     <TouchableOpacity onPress={props.onPress}>
       <OptionEntry style={props.style} icon={props.icon}>
-        <View>
+        <View flex={8}>
           <TextInput style={styles.text} editable={false}>
             {props.hint}
           </TextInput>
         </View>
         <View
+          flex={2}
           style={{
             flexDirection: 'row',
             justifyContent: 'flex-end',
