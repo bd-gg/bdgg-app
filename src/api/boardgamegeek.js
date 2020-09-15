@@ -79,8 +79,10 @@ export const addGroupInfo = (data, addGroupFunction) => {
     });
 };
 
-export const getUsersByKey = (key) => {
+export const getUsersByKey = (key, ListFunction) => {
   console.log('User id is', key);
+  // [TODO] Encoding when Korean
+  //key = JSON.stringify(encodeURIComponent(key));
   fetch(
     `http://ec2-13-125-12-178.ap-northeast-2.compute.amazonaws.com:8080/users?username=${key}`,
     {
@@ -91,9 +93,11 @@ export const getUsersByKey = (key) => {
     }
   )
     .then((res) => {
+      console.log(res.ok);
       return res.json();
     })
     .then((res) => {
-      console.log('Get User By key', res.item);
+      console.log('Get User By key', res.items);
+      ListFunction(res.items);
     });
 };

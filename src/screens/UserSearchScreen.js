@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,9 +9,13 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import OverlayViewContainer from '~/containers/OverlayViewContainer';
+import { getUsersByKey } from '../api/boardgamegeek';
+import UserListScreen from './UserListScreen';
 
 export default function UserSearchScreen(props) {
   let textInput;
+  const [keyData, setKeyData] = useState('');
+  const [data, setData] = useState([]);
 
   return (
     <OverlayViewContainer
@@ -37,12 +41,14 @@ export default function UserSearchScreen(props) {
             <TextInput
               style={styles.textInput}
               placeholder="3글자 이상 검색"
-              ref={(input) => {
-                textInput = input;
+              ref={(ref) => {
+                textInput = ref;
               }}
+              onChangeText={setKeyData}
             />
             <TouchableOpacity
               onPress={() => {
+                getUsersByKey(keyData, setData);
                 alert('submit');
               }}
             >
@@ -51,44 +57,7 @@ export default function UserSearchScreen(props) {
               </View>
             </TouchableOpacity>
           </View>
-          <View style={styles.recent}>
-            <Text style={{ fontSize: 20 }}>최근 검색</Text>
-            <View
-              style={{
-                marginTop: 15,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Text
-                style={{
-                  color: 'grey',
-                  fontSize: 16,
-                }}
-              >
-                검색 기록이 없습니다 .
-              </Text>
-            </View>
-          </View>
-          <View style={styles.recent}>
-            <Text style={{ fontSize: 20 }}>검색 결과</Text>
-            <View
-              style={{
-                marginTop: 15,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Text
-                style={{
-                  color: 'grey',
-                  fontSize: 16,
-                }}
-              >
-                검색 결과가 없습니다.
-              </Text>
-            </View>
-          </View>
+          <UserListScreen list={data}></UserListScreen>
         </View>
       </SafeAreaView>
     </OverlayViewContainer>
