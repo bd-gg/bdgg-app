@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export default function OptionEntry(props) {
   return (
     <View style={[styles.container, props.style]}>
-      {props.icon && <Ionicons style={styles.icon} name={props.icon} />}
+      {props.icon || <AntDesign style={styles.icon} name="questioncircleo" />}
       <View style={styles.layout}>{props.children}</View>
     </View>
   );
@@ -29,5 +29,6 @@ const styles = StyleSheet.create({
   layout: {
     flex: 1,
     flexDirection: 'row',
+    marginLeft: 15,
   },
 });

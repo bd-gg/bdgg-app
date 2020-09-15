@@ -12,6 +12,8 @@ import { AsyncStorage } from 'react-native';
 import { Fonts } from '../Fonts';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import messaging from '@react-native-firebase/messaging';
+
 if (!KakaoLogins) {
   console.error('Module is Not Linked');
 }
@@ -72,7 +74,23 @@ function LoginScreen(props) {
             console.log(res);
             AsyncStorage.setItem('bdgg-accessToken', res.accessToken);
             AsyncStorage.setItem('bdgg-refreshToken', res.refreshToken);
-            AsyncStorage.setItem('myId', '100');
+            AsyncStorage.setItem('myId', '1');
+            messaging()
+              .getToken()
+              .then((token) => {
+                console.log('A new FCM token !', JSON.stringify(token));
+                fetch(
+                  'http://ec2-13-125-12-178.ap-northeast-2.compute.amazonaws.com:8080/token/register',
+                  {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify({
+                      id: 1,
+                      token: token,
+                    }),
+                  }
+                );
+              });
           })
           .catch((err) => {
             console.error(err);

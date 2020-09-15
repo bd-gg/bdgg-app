@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "948654300449",
+    "firebase_url": "https://bdgg-d3822.firebaseio.com",
+    "project_id": "bdgg-d3822",
+    "storage_bucket": "bdgg-d3822.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948654300449:android:904a7079ce4fe8ab383260",
+        "android_client_info": {
+          "package_name": "com.bdggapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "948654300449-5uk4c4gspcrdit3agv9lfr681nqvuuf1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDN6umj3KiAYer8J8X8Etm6P7uONfenPqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "948654300449-5uk4c4gspcrdit3agv9lfr681nqvuuf1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

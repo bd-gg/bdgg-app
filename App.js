@@ -1,23 +1,42 @@
-import React, { Component, useEffect } from 'react';
-import { View, Text } from 'react-native';
-import { AsyncStorage } from 'react-native';
-
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+import messaging from '@react-native-firebase/messaging';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-import ProfileScreen from '~/screens/ProfileScreen';
-import LoginScreen from '~/screens/LoginScreen';
-import AppLoadingScreen from '~/screens/AppLoadingScreen';
-import SettingScreen from '~/screens/SettingScreen';
-import GroupScreen from '~/screens/GroupScreen';
-import MatchRegisterScreen from '~/screens/MatchRegisterScreen';
-
+import React, { Component, useEffect } from 'react';
+import { Text, View } from 'react-native';
+import { AsyncStorage } from 'react-native';
+import { Alert } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
+import AppLoadingScreen from '~/screens/AppLoadingScreen';
+import GroupScreen from '~/screens/GroupScreen';
+import LoginScreen from '~/screens/LoginScreen';
+import MatchRegisterScreen from '~/screens/MatchRegisterScreen';
+import ProfileScreen from '~/screens/ProfileScreen';
+import SettingScreen from '~/screens/SettingScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+// Register background handler
+messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+  console.log('Message handled in the background!', remoteMessage);
+});
+
+async function saveTokenToDatabase(token) {
+  // Assume user is already signed in
+  const userId = auth().currentUser.uid;
+
+  // Add the token to the users datastore
+  await firestore()
+    .collection('users')
+    .doc(userId)
+    .update({
+      tokens: firestore.FieldValue.arrayUnion(token),
+    });
+}
 
 function HomeScreen() {
   return (
@@ -35,7 +54,29 @@ function MyTabIndicator() {
 function App(props) {
   useEffect(() => {
     console.log(props.isLoading);
-  });
+    const unsubscribe = messaging().onMessage(async (remoteMessage) => {
+      console.log('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    });
+
+    messaging()
+      .getToken()
+      .then((token) => {
+        console.log('A new FCM token !', JSON.stringify(token));
+        return saveTokenToDatabase(token);
+      });
+
+    // If using other push notification providers (ie Amazon SNS, etc)
+    // you may need to get the APNs token instead for iOS:
+    // if(Platform.OS == 'ios') { messaging().getAPNSToken().then(token => {
+    // return saveTokenToDatabase(token); }); }
+
+    // Listen to whether the token changes
+    messaging().onTokenRefresh((token) => {
+      saveTokenToDatabase(token);
+    });
+
+    return unsubscribe;
+  }, []);
 
   const chooseScreen = (props) => {
     if (props.isLoading) {
