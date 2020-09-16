@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Image,
   View,
@@ -13,6 +13,11 @@ import GroupProfileImage from '~/components/GroupProfileImage';
 export default function GroupListEntry(props) {
   const index = props.index;
   const item = props.item;
+  const [dateVisible, setDateVisible] = useState(true);
+  let date = ''
+  if (item.recentlyPlayedGames.length != 0) {
+    date = formatDate(item.recentlyPlayedGames[0].playedTime.substring(0, 19));
+  }
 
   let __onPressed = () => {
     props.onPress(index);
@@ -20,6 +25,8 @@ export default function GroupListEntry(props) {
   let __onLongPressed = () => {
     props.onLongPress(index);
   };
+  //{formatDate(item.date)}
+
 
   return (
     <TouchableHighlight
@@ -65,7 +72,7 @@ export default function GroupListEntry(props) {
         </View>
         <View style={styles.tail}>
           <Text flex={1} style={styles.date}>
-            {formatDate(item.date)}
+              {date}
           </Text>
         </View>
       </View>
