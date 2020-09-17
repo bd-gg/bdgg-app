@@ -13,6 +13,9 @@ export default function GroupProfileImage(props) {
       left: pos.left,
       right: pos.right,
     };
+    if (src == null) {
+      return <Image source={require('../assets/img/bdgg.png')} style={styles} />
+    }
     return <Image source={{ uri: src }} style={styles} />;
   };
 
@@ -24,7 +27,9 @@ export default function GroupProfileImage(props) {
   const participant = members.length;
 
   let profile = <View />;
-  if (participant === 1) {
+  if (participant === 0) {
+    profile = getImage(size, { top: 0, left: 0 }, null);
+  } else if (participant === 1) {
     profile = getImage(size, { top: 0, left: 0 }, members[0]);
   } else if (participant === 2) {
     profile = getImage(size, { top: 0, left: 0 }, members[0]);

@@ -49,8 +49,8 @@ function GroupListScreen(props) {
             item={{
               members: [],
               gameTitle: item.name,
-              date: item.name,
-              party: item.place,
+              recentlyPlayedGames: item.recentlyPlayedGames,
+              party: item.name,
               location: item.place,
             }}
             index={index}
