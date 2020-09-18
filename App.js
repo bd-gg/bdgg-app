@@ -26,9 +26,7 @@ messaging().setBackgroundMessageHandler(async (remoteMessage) => {
 });
 
 async function saveTokenToDatabase(token) {
-  // Assume user is already signed in
-  const userId = auth().currentUser.uid;
-
+  let userId = AsyncStorage.getItem('myId');
   // Add the token to the users datastore
   await firestore()
     .collection('users')
