@@ -15,7 +15,7 @@ export default function GroupListEntry(props) {
   const item = props.item;
   const [dateVisible, setDateVisible] = useState(true);
   let date = '';
-  if (item.recentlyPlayedGames?.length != 0) {
+  if (typeof(item.recentlyPlayedGames) != 'undefined' && item.recentlyPlayedGames?.length != 0) {
     date = formatDate(item.recentlyPlayedGames[0].playedTime.substring(0, 19));
   }
 
