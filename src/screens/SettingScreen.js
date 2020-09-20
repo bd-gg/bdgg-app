@@ -22,6 +22,7 @@ function SettingLayout(props) {
             }}
           />
           <TypographyOption name="비밀번호 변경" />
+          <TypographyOption name="로그아웃" />
         </OptionContainer>
         <OptionContainer title="Policy">
           <TypographyOption
