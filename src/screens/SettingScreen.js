@@ -22,12 +22,19 @@ function SettingLayout(props) {
             }}
           />
           <TypographyOption name="비밀번호 변경" />
+          <TypographyOption name="로그아웃" />
         </OptionContainer>
         <OptionContainer title="Policy">
           <TypographyOption
             name="이용약관"
             onPress={() => {
-              props.navigation.navigate('이용 약관');
+              props.navigation.navigate('이용약관');
+            }}
+          />
+          <TypographyOption
+            name="개인정보처리방침"
+            onPress={() => {
+              props.navigation.navigate('개인정보처리방침');
             }}
           />
         </OptionContainer>

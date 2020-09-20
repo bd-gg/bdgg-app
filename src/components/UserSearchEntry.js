@@ -1,11 +1,8 @@
 import React from 'react';
-import {
-  Image,
-  View,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-} from 'react-native';
+import { View, StyleSheet, Text, TouchableHighlight } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+import ProfileImage from '~/components/ProfileImage';
 
 export default function UserSearchEntry(props) {
   const index = props.index;
@@ -17,31 +14,35 @@ export default function UserSearchEntry(props) {
 
   return (
     <TouchableHighlight
-      style={styles.container}
+      flex={1}
       activeOpacity={0.8}
-      underlayColor="#C0C3FF"
+      underlayColor="#dcddfc"
       onPress={__onPressed}
     >
       <View style={styles.container}>
-        <Image
-          source={{ uri: item.imageUrl }}
-          PlaceholderContent={<View />}
-          style={{
-            width: 20,
-            height: 20,
-            borderRadius: 10,
-          }}
-        />
+        <ProfileImage source={{ uri: item.imageUrl }} style={styles.head} />
         <View style={styles.body}>
           <View height={18} alignItems="center" flexDirection="row">
             <Text
               ellipsizeMode="tail"
               numberOfLines={1}
-              style={{ color: 'grey', fontSize: 12 }}
+              style={{ color: 'black', fontSize: 18 }}
             >
               {item.name}
             </Text>
+            <Text> </Text>
+            <Text
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={{ color: 'grey', fontSize: 14 }}
+            >
+              {' #'}
+              {item.id ? item.id : 'ABC'}
+            </Text>
           </View>
+        </View>
+        <View style={styles.tail}>
+          <Ionicons style={styles.forwardIcon} name="ios-arrow-forward" />
         </View>
       </View>
     </TouchableHighlight>
@@ -52,13 +53,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    width: '100%',
-    height: 66,
-    backgroundColor: '#F8E71C',
+    height: 70,
     alignItems: 'center',
-  },
-  head: {
-    marginLeft: 10,
+    marginHorizontal: 10,
   },
   body: {
     flex: 1,
@@ -70,21 +67,12 @@ const styles = StyleSheet.create({
   tail: {
     flexDirection: 'column',
     alignItems: 'flex-end',
-    paddingRight: 16,
+    paddingRight: 10,
     justifyContent: 'center',
     height: '100%',
   },
-  date: {
-    color: '#919BA4',
-    fontSize: 12,
-  },
-  victory: {
-    color: 'orange',
-    fontSize: 15,
-  },
-  participants: {
-    fontSize: 16,
-    color: '#777BFF',
-    marginLeft: 5,
+  forwardIcon: {
+    fontSize: 24,
+    color: 'grey',
   },
 });

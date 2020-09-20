@@ -17,6 +17,13 @@ export default function UserSearchScreen(props) {
   const [keyData, setKeyData] = useState('');
   const [data, setData] = useState([]);
 
+  const __onChangeText = (input) => {
+    if (input.length > 2) {
+      setKeyData(input);
+      getUsersByKey(keyData, setData);
+    }
+  };
+
   return (
     <OverlayViewContainer
       isVisible={props.isVisible}
@@ -40,11 +47,11 @@ export default function UserSearchScreen(props) {
             </TouchableOpacity>
             <TextInput
               style={styles.textInput}
-              placeholder="3글자 이상 검색"
+              placeholder="사용자 검색"
               ref={(ref) => {
                 textInput = ref;
               }}
-              onChangeText={setKeyData}
+              onChangeText={__onChangeText}
             />
             <TouchableOpacity
               onPress={() => {
