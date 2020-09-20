@@ -1,8 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, View, StyleSheet } from 'react-native';
 
 import { FloatingButton } from '~/components/FloatingButton';
 import UserSearchEntry from '~/components/UserSearchEntry';
+
+import image from '~/utils/image_sample';
+const SampleList = [
+  {
+    imageUrl: image[0],
+    name: 'Alice',
+    id: '#asr3grd2',
+  },
+  {
+    imageUrl: image[1],
+    name: 'Bill',
+    id: '#der22d3',
+  },
+];
 
 function UserListScreen(props) {
   console.log('UserListScreen is called');
@@ -12,8 +26,10 @@ function UserListScreen(props) {
 
   return (
     <View style={{ flex: 1 }}>
+      <View height={5} />
       <FlatList
-        data={data}
+        // data={data}
+        data={SampleList}
         renderItem={({ item, index }) => (
           <UserSearchEntry
             item={{
