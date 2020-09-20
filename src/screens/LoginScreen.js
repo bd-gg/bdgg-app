@@ -74,7 +74,7 @@ function LoginScreen(props) {
             console.log(res);
             AsyncStorage.setItem('bdgg-accessToken', res.accessToken);
             AsyncStorage.setItem('bdgg-refreshToken', res.refreshToken);
-            AsyncStorage.setItem('myId', '1');
+            AsyncStorage.setItem('myId', res.userId);
             messaging()
               .getToken()
               .then((token) => {
@@ -85,7 +85,7 @@ function LoginScreen(props) {
                     method: 'POST',
                     headers: { 'content-type': 'application/json' },
                     body: JSON.stringify({
-                      id: 1,
+                      id: res.userId,
                       token: token,
                     }),
                   }
